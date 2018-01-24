@@ -10,11 +10,8 @@ import {
   KeyValueDiffer,
   KeyValueDiffers,
   NgZone,
-  OnChanges,
   OnDestroy,
-  OnInit,
   Output,
-  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
