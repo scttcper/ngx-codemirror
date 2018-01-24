@@ -1,10 +1,41 @@
-<ngx-codemirror
-  [options]="options"
-  [(ngModel)]="swag"
-  [disabled]="false"
-></ngx-codemirror>
+<div class="container">
+  <div class="row">
+    <div class="col-12 mb-3">
+      <h1>Angular CodeMirror</h1>
+    </div>
+  </div>
+</div>
 
-<pre>{{ swag }}</pre>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+
+      <div class="ngx-codemirror mb-2">
+        <ngx-codemirror
+          [options]="options"
+          [ngModel]="this.defaults[this.mode]"
+          [disabled]="readOnly"
+          [autoFocus]="true"
+        ></ngx-codemirror>
+      </div>
+
+      <form class="form-inline">
+        <select class="form-control mr-1" name="state" [(ngModel)]="mode" (ngModelChange)="changeMode()">
+          <option value="markdown">Markdown</option>
+          <option value="text/typescript">TypeScript</option>
+        </select>
+
+        <div class="btn-group-toggle">
+          <label class="btn btn-light" [class.active]="readOnly">
+            <input type="checkbox" [(ngModel)]="readOnly" name="readOnly" autocomplete="off">
+            Toggle read-only mode (currently {{readOnly ? 'on' : 'off'}})
+          </label>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
 
 
-<a (click)="changeOptions()">options</a>
+<app-footer></app-footer>

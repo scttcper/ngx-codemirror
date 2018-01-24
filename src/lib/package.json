@@ -1,0 +1,25 @@
+{
+  "$schema": "../../node_modules/ng-packagr/package.schema.json",
+  "name": "@ctrl/ngx-codemirror",
+  "version": "0.0.1",
+  "description": "CodeMirror wrapper for Angular",
+  "peerDependencies": {
+    "@angular/core": ">=5.0.0",
+    "@angular/common": ">=5.0.0",
+    "@angular/forms": ">=5.0.0"
+  },
+  "dependencies": {
+    "lodash-es": "~4.17.4"
+  },
+  "repository": "https://github.com/typectrl/ngx-codemirror.git",
+  "homepage": "https://github.com/typectrl/ngx-codemirror",
+  "license": "MIT",
+  "bugs": "https://github.com/typectrl/ngx-codemirror/issues",
+  "keywords": ["ngx", "angular", "angular-component", "wrapper", "codemirror"],
+  "ngPackage": {
+    "lib": {
+      "entryFile": "public_api.ts"
+    },
+    "dest": "../../dist"
+  }
+}

@@ -1,15 +1,35 @@
 import { Component } from '@angular/core';
 
+const defaults = {
+  markdown:
+    '# Heading\n\nSome **bold** and _italic_ text\nBy [Scott Cooper](https://github.com/scttcper)',
+  'text/typescript':
+    `const component = {
+  name: "ngx-codemirror",
+  author: "Scott Cooper",
+  repo: "https://github.com/typectrl/ngx-codemirror"
+};
+const hello: string = 'world';`,
+};
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  swag = 'app';
-  options = {};
+  readOnly = false;
+  mode = 'markdown';
+  options: any = {
+    lineNumbers: true,
+    readOnly: this.readOnly,
+    mode: this.mode,
+  };
+  defaults = defaults;
 
-  changeOptions() {
-    this.options = { lineNumbers: true };
-    this.swag = '<div>OKAY</div>'
+  changeMode() {
+    this.options = {
+      ...this.options,
+      mode: this.mode,
+    };
   }
 }

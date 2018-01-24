@@ -95,6 +95,9 @@ export class CodemirrorComponent
     }
   }
   setOptionIfChanged(optionName, newValue) {
+    if (!this.codeMirror) {
+      return;
+    }
     const oldValue = this.codeMirror.getOption(optionName);
     if (!isEqual(oldValue, newValue)) {
       this.codeMirror.setOption(optionName, newValue);
