@@ -6,4 +6,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   swag = 'app';
+  options = {};
+
+  changeOptions() {
+    this.options = { lineNumbers: true };
+    this.swag = '<div>OKAY</div>'
+  }
 }

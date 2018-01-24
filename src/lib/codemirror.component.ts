@@ -5,15 +5,24 @@ import {
   ElementRef,
   EventEmitter,
   Input,
+  OnChanges,
   OnDestroy,
   OnInit,
   Output,
+  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import * as codemirror from 'codemirror';
 import isEqual from 'lodash-es/isEqual';
+
+function normalizeLineEndings(str) {
+  if (!str) {
+    return str;
+  }
+  return str.replace(/\r\n|\r/g, '\n');
+}
 
 @Component({
   selector: 'ngx-codemirror',
@@ -23,6 +32,7 @@ import isEqual from 'lodash-es/isEqual';
     class="ngx-codemirror {{ className }}"
     [class.ngx-codemirror--focused]="isFocused"
     autocomplete="off"
+    [autofocus]="autoFocus"
     #ref>
   </textarea>
   `,
@@ -34,7 +44,8 @@ import isEqual from 'lodash-es/isEqual';
     },
   ],
 })
-export class CodemirrorComponent implements AfterViewInit, OnDestroy, ControlValueAccessor {
+export class CodemirrorComponent
+  implements AfterViewInit, OnDestroy, ControlValueAccessor, OnChanges {
   @Input() className: string;
   @Input() name: string;
   @Input() autoFocus = false;
@@ -42,8 +53,8 @@ export class CodemirrorComponent implements AfterViewInit, OnDestroy, ControlVal
   @Input() path: string;
   @Input() preserveScrollPosition: boolean;
   @Output() cursorActivity = new EventEmitter<any>();
-  @Output() focusChange = new EventEmitter<any>();
-  @Output() scroll = new EventEmitter<any>();
+  @Output() focusChange = new EventEmitter<boolean>();
+  @Output() scroll = new EventEmitter<CodeMirror.ScrollInfo>();
   @ViewChild('ref') ref: ElementRef;
   value = '';
   disabled = false;
@@ -55,15 +66,21 @@ export class CodemirrorComponent implements AfterViewInit, OnDestroy, ControlVal
       this.ref.nativeElement,
       this.options,
     );
-    this.codeMirror.on('change', (doc, change) =>
-      this.codemirrorValueChanged(doc, change),
-    );
-    // this.codeMirror.on('cursorActivity', this.cursorActivity);
-    // this.codeMirror.on('focus', this.focusChanged.bind(this, true));
-    // this.codeMirror.on('blur', this.focusChanged.bind(this, false));
-    // this.codeMirror.on('scroll', this.scrollChanged);
-    // this.codeMirror.setValue(this.value || '');
-    console.log(this.value);
+    this.codeMirror.on('change', this.codemirrorValueChanged.bind(this));
+    this.codeMirror.on('cursorActivity', this.cursorActive.bind(this));
+    this.codeMirror.on('focus', this.focusChanged.bind(this, true));
+    this.codeMirror.on('blur', this.focusChanged.bind(this, false));
+    this.codeMirror.on('scroll', this.scrollChanged.bind(this));
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    if (typeof changes.options.currentValue === 'object') {
+      for (const optionName of Object.keys(changes.options.currentValue)) {
+        this.setOptionIfChanged(
+          optionName,
+          changes.options.currentValue[optionName],
+        );
+      }
+    }
   }
   ngOnDestroy() {
     // is there a lighter-weight way to remove the cm instance?
@@ -83,15 +100,40 @@ export class CodemirrorComponent implements AfterViewInit, OnDestroy, ControlVal
       this.codeMirror.setOption(optionName, newValue);
     }
   }
+  focusChanged(focused: boolean) {
+    this.onTouched();
+    this.isFocused = focused;
+    this.focusChange.emit(focused);
+  }
+  scrollChanged(cm) {
+    this.scroll.emit(cm.getScrollInfo());
+  }
+  cursorActive(cm) {
+    this.cursorActivity.emit(cm);
+  }
 
   /** Implemented as part of ControlValueAccessor. */
   writeValue(value: string): void {
     if (value === null) {
       return;
     }
-    if (this.value !== value) {
-      this.codeMirror.setValue(value || '');
+    if (
+      value &&
+      value !== this.codeMirror.getValue() &&
+      normalizeLineEndings(this.codeMirror.getValue()) !==
+        normalizeLineEndings(value)
+    ) {
       this.value = value;
+      if (this.preserveScrollPosition) {
+        const prevScrollPosition = this.codeMirror.getScrollInfo();
+        this.codeMirror.setValue(this.value);
+        this.codeMirror.scrollTo(
+          prevScrollPosition.left,
+          prevScrollPosition.top,
+        );
+      } else {
+        this.codeMirror.setValue(this.value);
+      }
     }
     this.onChange(this.value);
   }

@@ -1,7 +1,10 @@
 <ngx-codemirror
-  [options]="{lineNumbers: true}"
+  [options]="options"
   [(ngModel)]="swag"
   [disabled]="false"
 ></ngx-codemirror>
 
 <pre>{{ swag }}</pre>
+
+
+<a (click)="changeOptions()">options</a>
