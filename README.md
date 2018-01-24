@@ -48,10 +48,10 @@ Import the css files
 Use The Component
 ```html
 <ngx-codemirror 
-  [(ngModel)]="this.defaults[this.mode]" 
+  [(ngModel)]="content" 
   [options]="{
     lineNumbers: true,
-    mode: 'markdown',
+    mode: 'markdown'
   }"
 ></ngx-codemirror>
 ```
