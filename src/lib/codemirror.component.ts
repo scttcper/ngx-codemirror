@@ -60,7 +60,6 @@ export class CodemirrorComponent
    */
   @Input()
   set options(value: {[key: string]: any}) {
-    console.log('value', value);
     this._options = value;
     if (!this._differ && value) {
       this._differ = this._differs.find(value).create();
@@ -158,9 +157,11 @@ export class CodemirrorComponent
           prevScrollPosition.left,
           prevScrollPosition.top,
         );
-      } else {
-        this.codeMirror.setValue(this.value);
+        return;
       }
+      this.codeMirror.setValue(this.value);
+      // Don't call onChange value is from ngModel
+      return;
     }
     this.onChange(this.value);
   }
