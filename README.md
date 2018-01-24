@@ -39,7 +39,7 @@ import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/markdown/markdown';
 ```
 
-Import the css files
+Import the base css file and your [theme](https://codemirror.net/demo/theme.html)
 ```scss
 @import "~codemirror/lib/codemirror.css";
 @import "~codemirror/theme/material.css";
