@@ -71,3 +71,8 @@ All outputs of [ngModel](https://angular.io/api/forms/NgModel#outputs)
 
 ## License
 MIT
+
+---
+
+> GitHub [@scttcper](https://github.com/scttcper) &nbsp;&middot;&nbsp;
+> Twitter [@scttcper](https://twitter.com/scttcper)
