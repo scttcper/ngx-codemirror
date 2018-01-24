@@ -1,10 +1,15 @@
 import {
   forwardRef,
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
+  DoCheck,
   ElementRef,
   EventEmitter,
   Input,
+  KeyValueDiffer,
+  KeyValueDiffers,
+  NgZone,
   OnChanges,
   OnDestroy,
   OnInit,
@@ -15,7 +20,6 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import * as codemirror from 'codemirror';
-import isEqual from 'lodash-es/isEqual';
 
 function normalizeLineEndings(str) {
   if (!str) {
@@ -43,13 +47,21 @@ function normalizeLineEndings(str) {
       multi: true,
     },
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CodemirrorComponent
-  implements AfterViewInit, OnDestroy, ControlValueAccessor, OnChanges {
+  implements AfterViewInit, OnDestroy, ControlValueAccessor, DoCheck {
   @Input() className: string;
   @Input() name: string;
   @Input() autoFocus = false;
-  @Input() options: any = {};
+  @Input()
+  set options(value: {[key: string]: any}) {
+    console.log('value', value);
+    this._options = value;
+    if (!this._differ && value) {
+      this._differ = this._differs.find(value).create();
+    }
+  }
   @Input() path: string;
   @Input() preserveScrollPosition: boolean;
   @Output() cursorActivity = new EventEmitter<any>();
@@ -60,25 +72,32 @@ export class CodemirrorComponent
   disabled = false;
   isFocused = false;
   codeMirror: CodeMirror.EditorFromTextArea;
+  private _differ: KeyValueDiffer<string, any>;
+  private _options: any;
+
+
+  constructor(private _differs: KeyValueDiffers, private _ngZone: NgZone) {}
 
   ngAfterViewInit() {
     this.codeMirror = codemirror.fromTextArea(
       this.ref.nativeElement,
-      this.options,
+      this._options,
     );
-    this.codeMirror.on('change', this.codemirrorValueChanged.bind(this));
-    this.codeMirror.on('cursorActivity', this.cursorActive.bind(this));
-    this.codeMirror.on('focus', this.focusChanged.bind(this, true));
-    this.codeMirror.on('blur', this.focusChanged.bind(this, false));
-    this.codeMirror.on('scroll', this.scrollChanged.bind(this));
+    this._ngZone.runOutsideAngular(() => {
+      this.codeMirror.on('change', this.codemirrorValueChanged.bind(this));
+      this.codeMirror.on('cursorActivity', this.cursorActive.bind(this));
+      this.codeMirror.on('focus', this.focusChanged.bind(this, true));
+      this.codeMirror.on('blur', this.focusChanged.bind(this, false));
+      this.codeMirror.on('scroll', this.scrollChanged.bind(this));
+    });
   }
-  ngOnChanges(changes: SimpleChanges): void {
-    if (typeof changes.options.currentValue === 'object') {
-      for (const optionName of Object.keys(changes.options.currentValue)) {
-        this.setOptionIfChanged(
-          optionName,
-          changes.options.currentValue[optionName],
-        );
+  ngDoCheck() {
+    if (this._differ) {
+      const changes = this._differ.diff(this._options);
+      if (changes) {
+        changes.forEachChangedItem((option) => this.setOptionIfChanged(option.key, option.currentValue));
+        changes.forEachAddedItem((option) => this.setOptionIfChanged(option.key, option.currentValue));
+        changes.forEachRemovedItem((option) => this.setOptionIfChanged(option.key, option.currentValue));
       }
     }
   }
@@ -98,10 +117,7 @@ export class CodemirrorComponent
     if (!this.codeMirror) {
       return;
     }
-    const oldValue = this.codeMirror.getOption(optionName);
-    if (!isEqual(oldValue, newValue)) {
-      this.codeMirror.setOption(optionName, newValue);
-    }
+    this.codeMirror.setOption(optionName, newValue);
   }
   focusChanged(focused: boolean) {
     this.onTouched();
