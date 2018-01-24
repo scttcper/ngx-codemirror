@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ts-node build.ts",
-    "publish": "node prepublish.js && cd dist && npm publish --access public",
+    "publish": "cd dist && npm publish --access public",
     "test": "ng test --browsers=ChromeCI",
     "test:ci": "ng test --single-run --code-coverage --no-progress --browsers=ChromeCI",
     "lint": "ng lint --type-check -t stylish",
