@@ -51,6 +51,7 @@ Use The Component
   [(ngModel)]="content" 
   [options]="{
     lineNumbers: true,
+    theme: 'material',
     mode: 'markdown'
   }"
 ></ngx-codemirror>
