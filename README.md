@@ -45,6 +45,7 @@ Import the css files
 @import "~codemirror/theme/material.css";
 ```
 
+Use The Component
 ```html
 <ngx-codemirror 
   [(ngModel)]="this.defaults[this.mode]" 
