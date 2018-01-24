@@ -22,20 +22,36 @@ https://github.com/JedWatson/react-codemirror - This project is mostly a port of
 https://github.com/chymz/ng2-codemirror - Good to reference
 
 ## Install
+`codemirror` is a peer dependency and must also be installed  
 ```sh
-npm install @ctrl/ngx-codemirror
+npm install @ctrl/ngx-codemirror codemirror
 ```
 
 ## Use
+Import `CodemirrorModule` and bring in the [codemirror files for parsing the langague](https://codemirror.net/mode/index.html) you wish to use.
 ```ts
 // Added to NgModule
 import { CodemirrorModule } from '@ctrl/ngx-codemirror';
+
+// Import your required language in main.ts or at the root of your application
+// see https://codemirror.net/mode/index.html
+import 'codemirror/mode/javascript/javascript';
+import 'codemirror/mode/markdown/markdown';
+```
+
+Import the css files
+```scss
+@import "~codemirror/lib/codemirror.css";
+@import "~codemirror/theme/material.css";
 ```
 
 ```html
 <ngx-codemirror 
   [(ngModel)]="this.defaults[this.mode]" 
-  [options]="options"
+  [options]="{
+    lineNumbers: true,
+    mode: 'markdown',
+  }"
 ></ngx-codemirror>
 ```
 

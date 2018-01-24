@@ -21,7 +21,6 @@ export class AppComponent {
   mode = 'markdown';
   options: any = {
     lineNumbers: true,
-    readOnly: this.readOnly,
     mode: this.mode,
   };
   defaults = defaults;
