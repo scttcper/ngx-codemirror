@@ -5,7 +5,7 @@ const defaults = {
     '# Heading\n\nSome **bold** and _italic_ text\nBy [Scott Cooper](https://github.com/scttcper)',
   'text/typescript':
     `const component = {
-  name: "ngx-codemirror",
+  name: "@ctrl/ngx-codemirror",
   author: "Scott Cooper",
   repo: "https://github.com/typectrl/ngx-codemirror"
 };
