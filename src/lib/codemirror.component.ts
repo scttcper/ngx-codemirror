@@ -48,9 +48,16 @@ function normalizeLineEndings(str) {
 })
 export class CodemirrorComponent
   implements AfterViewInit, OnDestroy, ControlValueAccessor, DoCheck {
+  /* class applied to the created textarea */
   @Input() className: string;
-  @Input() name: string;
+  /* name applied to the created textarea */
+  @Input() name = 'codemirror';
+  /* autofocus setting applied to the created textarea */
   @Input() autoFocus = false;
+  /**
+   * set options for codemirror
+   * @link http://codemirror.net/doc/manual.html#config
+   */
   @Input()
   set options(value: {[key: string]: any}) {
     console.log('value', value);
@@ -59,10 +66,13 @@ export class CodemirrorComponent
       this._differ = this._differs.find(value).create();
     }
   }
-  @Input() path: string;
+  /* preserve previous scroll position after updating value */
   @Input() preserveScrollPosition: boolean;
-  @Output() cursorActivity = new EventEmitter<any>();
+  /* called when the text cursor is moved */
+  @Output() cursorActivity = new EventEmitter<CodeMirror.Editor>();
+  /* called when the editor is focused or loses focus */
   @Output() focusChange = new EventEmitter<boolean>();
+  /* called when the editor is scrolled */
   @Output() scroll = new EventEmitter<CodeMirror.ScrollInfo>();
   @ViewChild('ref') ref: ElementRef;
   value = '';
@@ -90,6 +100,7 @@ export class CodemirrorComponent
   }
   ngDoCheck() {
     if (this._differ) {
+      // check options have not changed
       const changes = this._differ.diff(this._options);
       if (changes) {
         changes.forEachChangedItem((option) => this.setOptionIfChanged(option.key, option.currentValue));
