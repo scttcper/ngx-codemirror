@@ -17,7 +17,8 @@
 <br>
 
 An Angular component wrapper for [CodeMirror](https://codemirror.net/) that extends ngModel  
-__Based on:__  
+__Based on:__   
+
 https://github.com/JedWatson/react-codemirror - This project is mostly a port of react-codemirror  
 https://github.com/chymz/ng2-codemirror - Good to reference  
 
