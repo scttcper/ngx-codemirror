@@ -96,6 +96,7 @@ export class CodemirrorComponent
       this.codeMirror.on('blur', this.focusChanged.bind(this, false));
       this.codeMirror.on('scroll', this.scrollChanged.bind(this));
     });
+    this.codeMirror.setValue(this.value);
   }
   ngDoCheck() {
     if (this._differ) {
@@ -143,11 +144,14 @@ export class CodemirrorComponent
     if (value === null) {
       return;
     }
+    if (value && !this.codeMirror) {
+      this.value = value;
+      return;
+    }
     if (
       value &&
       value !== this.codeMirror.getValue() &&
-      normalizeLineEndings(this.codeMirror.getValue()) !==
-        normalizeLineEndings(value)
+      normalizeLineEndings(this.codeMirror.getValue()) !== normalizeLineEndings(value)
     ) {
       this.value = value;
       if (this.preserveScrollPosition) {
