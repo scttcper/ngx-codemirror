@@ -9,6 +9,7 @@
           [ngModel]="this.defaults[this.mode]"
           [disabled]="readOnly"
           [autoFocus]="true"
+          (ngModelChange)="handleChange($event)"
         ></ngx-codemirror>
       </div>
 

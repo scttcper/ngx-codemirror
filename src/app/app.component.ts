@@ -31,4 +31,8 @@ export class AppComponent {
       mode: this.mode,
     };
   }
+
+  handleChange($event) {
+    console.log('ngModelChange', $event);
+  }
 }
