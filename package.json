@@ -28,7 +28,7 @@
     "@angular/router": "^5.2.2",
     "@ctrl/ngx-github-buttons": "^1.0.5",
     "bootstrap": "^4.0.0",
-    "codemirror": "^5.33.0",
+    "codemirror": "^5.34.0",
     "core-js": "^2.5.3",
     "lodash": "^4.17.4",
     "rxjs": "^5.5.6",
