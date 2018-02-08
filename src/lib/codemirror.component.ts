@@ -15,8 +15,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-
-import * as codemirror from 'codemirror';
+import {Editor, EditorFromTextArea, ScrollInfo} from 'codemirror';
 
 function normalizeLineEndings(str) {
   if (!str) {
@@ -24,6 +23,8 @@ function normalizeLineEndings(str) {
   }
   return str.replace(/\r\n|\r/g, '\n');
 }
+
+declare var require;
 
 @Component({
   selector: 'ngx-codemirror',
@@ -68,16 +69,16 @@ export class CodemirrorComponent
   /* preserve previous scroll position after updating value */
   @Input() preserveScrollPosition: boolean;
   /* called when the text cursor is moved */
-  @Output() cursorActivity = new EventEmitter<CodeMirror.Editor>();
+  @Output() cursorActivity = new EventEmitter<Editor>();
   /* called when the editor is focused or loses focus */
   @Output() focusChange = new EventEmitter<boolean>();
   /* called when the editor is scrolled */
-  @Output() scroll = new EventEmitter<CodeMirror.ScrollInfo>();
+  @Output() scroll = new EventEmitter<ScrollInfo>();
   @ViewChild('ref') ref: ElementRef;
   value = '';
   disabled = false;
   isFocused = false;
-  codeMirror: CodeMirror.EditorFromTextArea;
+  codeMirror: EditorFromTextArea;
   private _differ: KeyValueDiffer<string, any>;
   private _options: any;
 
@@ -85,7 +86,11 @@ export class CodemirrorComponent
   constructor(private _differs: KeyValueDiffers, private _ngZone: NgZone) {}
 
   ngAfterViewInit() {
-    this.codeMirror = codemirror.fromTextArea(
+
+    // in order to allow for universal rendering, we import Codemirror runtime with `require` to prevent node errors
+    const { fromTextArea } = require('codemirror');
+
+    this.codeMirror = fromTextArea(
       this.ref.nativeElement,
       this._options,
     );
