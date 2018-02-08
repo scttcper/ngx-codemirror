@@ -1,7 +1,7 @@
 {
   "$schema": "../../node_modules/ng-packagr/package.schema.json",
   "name": "@ctrl/ngx-codemirror",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "CodeMirror wrapper for Angular",
   "peerDependencies": {
     "@angular/core": ">=5.0.0",
