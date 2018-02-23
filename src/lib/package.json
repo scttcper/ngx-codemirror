@@ -10,7 +10,7 @@
     "codemirror": "^5.34.0"
   },
   "dependencies": {
-    "@types/codemirror": "^0.0.55"
+    "@types/codemirror": "0.0.55"
   },
   "repository": "https://github.com/typectrl/ngx-codemirror.git",
   "homepage": "https://github.com/typectrl/ngx-codemirror",
