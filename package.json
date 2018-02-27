@@ -13,7 +13,7 @@
     "lint:fix": "ng lint --fix --type-check -t stylish",
     "e2e": "ng e2e",
     "bundlesize": "npx bundlesize",
-    "ghpages": "ng build --prod --build-optimizer --aot --no-progress --baseHref='/ngx-codemirror/'"
+    "ghpages": "ng build --prod --no-progress --baseHref='/ngx-codemirror/'"
   },
   "private": true,
   "dependencies": {
