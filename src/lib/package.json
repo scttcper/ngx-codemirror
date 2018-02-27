@@ -1,12 +1,12 @@
 {
   "$schema": "../../node_modules/ng-packagr/package.schema.json",
   "name": "@ctrl/ngx-codemirror",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "CodeMirror wrapper for Angular",
   "peerDependencies": {
-    "@angular/core": ">=5.0.0",
-    "@angular/common": ">=5.0.0",
-    "@angular/forms": ">=5.0.0",
+    "@angular/core": ">=5.2.0",
+    "@angular/common": ">=5.2.0",
+    "@angular/forms": ">=5.2.0",
     "codemirror": "^5.34.0"
   },
   "sideEffects": false,

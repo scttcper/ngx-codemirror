@@ -15,16 +15,21 @@ import {
   ViewChild,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import {Editor, EditorFromTextArea, ScrollInfo} from 'codemirror';
+import {
+  Editor,
+  EditorChangeLinkedList,
+  EditorFromTextArea,
+  ScrollInfo,
+} from 'codemirror';
 
-function normalizeLineEndings(str) {
+function normalizeLineEndings(str: string) {
   if (!str) {
     return str;
   }
   return str.replace(/\r\n|\r/g, '\n');
 }
 
-declare var require;
+declare var require: any;
 
 @Component({
   selector: 'ngx-codemirror',
@@ -45,12 +50,13 @@ declare var require;
       multi: true,
     },
   ],
+  preserveWhitespaces: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CodemirrorComponent
   implements AfterViewInit, OnDestroy, ControlValueAccessor, DoCheck {
   /* class applied to the created textarea */
-  @Input() className: string;
+  @Input() className = '';
   /* name applied to the created textarea */
   @Input() name = 'codemirror';
   /* autofocus setting applied to the created textarea */
@@ -60,14 +66,14 @@ export class CodemirrorComponent
    * @link http://codemirror.net/doc/manual.html#config
    */
   @Input()
-  set options(value: {[key: string]: any}) {
+  set options(value: { [key: string]: any }) {
     this._options = value;
     if (!this._differ && value) {
       this._differ = this._differs.find(value).create();
     }
   }
   /* preserve previous scroll position after updating value */
-  @Input() preserveScrollPosition: boolean;
+  @Input() preserveScrollPosition = false;
   /* called when the text cursor is moved */
   @Output() cursorActivity = new EventEmitter<Editor>();
   /* called when the editor is focused or loses focus */
@@ -82,18 +88,16 @@ export class CodemirrorComponent
   private _differ: KeyValueDiffer<string, any>;
   private _options: any;
 
-
   constructor(private _differs: KeyValueDiffers, private _ngZone: NgZone) {}
 
   ngAfterViewInit() {
-
+    if (!this.ref) {
+      return;
+    }
     // in order to allow for universal rendering, we import Codemirror runtime with `require` to prevent node errors
     const { fromTextArea } = require('codemirror');
 
-    this.codeMirror = fromTextArea(
-      this.ref.nativeElement,
-      this._options,
-    );
+    this.codeMirror = fromTextArea(this.ref.nativeElement, this._options);
     this._ngZone.runOutsideAngular(() => {
       this.codeMirror.on('change', this.codemirrorValueChanged.bind(this));
       this.codeMirror.on('cursorActivity', this.cursorActive.bind(this));
@@ -108,9 +112,15 @@ export class CodemirrorComponent
       // check options have not changed
       const changes = this._differ.diff(this._options);
       if (changes) {
-        changes.forEachChangedItem((option) => this.setOptionIfChanged(option.key, option.currentValue));
-        changes.forEachAddedItem((option) => this.setOptionIfChanged(option.key, option.currentValue));
-        changes.forEachRemovedItem((option) => this.setOptionIfChanged(option.key, option.currentValue));
+        changes.forEachChangedItem(option =>
+          this.setOptionIfChanged(option.key, option.currentValue),
+        );
+        changes.forEachAddedItem(option =>
+          this.setOptionIfChanged(option.key, option.currentValue),
+        );
+        changes.forEachRemovedItem(option =>
+          this.setOptionIfChanged(option.key, option.currentValue),
+        );
       }
     }
   }
@@ -120,13 +130,13 @@ export class CodemirrorComponent
       this.codeMirror.toTextArea();
     }
   }
-  codemirrorValueChanged(doc, change) {
+  codemirrorValueChanged(cm: Editor, change: EditorChangeLinkedList) {
     if (change.origin !== 'setValue') {
-      this.value = doc.getValue();
-      this.writeValue(doc.getValue());
+      this.value = cm.getValue();
+      this.writeValue(cm.getValue());
     }
   }
-  setOptionIfChanged(optionName, newValue) {
+  setOptionIfChanged(optionName: string, newValue: any) {
     if (!this.codeMirror) {
       return;
     }
@@ -137,10 +147,10 @@ export class CodemirrorComponent
     this.isFocused = focused;
     this.focusChange.emit(focused);
   }
-  scrollChanged(cm) {
+  scrollChanged(cm: Editor) {
     this.scroll.emit(cm.getScrollInfo());
   }
-  cursorActive(cm) {
+  cursorActive(cm: Editor) {
     this.cursorActivity.emit(cm);
   }
 
@@ -156,7 +166,8 @@ export class CodemirrorComponent
     if (
       value &&
       value !== this.codeMirror.getValue() &&
-      normalizeLineEndings(this.codeMirror.getValue()) !== normalizeLineEndings(value)
+      normalizeLineEndings(this.codeMirror.getValue()) !==
+        normalizeLineEndings(value)
     ) {
       this.value = value;
       if (this.preserveScrollPosition) {

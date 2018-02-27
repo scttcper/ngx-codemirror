@@ -17,6 +17,7 @@
     "**/*.d.ts"
   ],
   "angularCompilerOptions": {
-    "preserveWhitespaces": false
+    "preserveWhitespaces": false,
+    "fullTemplateTypeCheck": true
   }
 }
