@@ -58,14 +58,14 @@ Use The Component
 ```
 
 ## Inputs
-All Inputs of [ngModel](https://angular.io/api/forms/NgModel#inputs)  
+All Inputs of [ngModel](https://angular.io/api/forms/NgModel#inputs) and  
 * `options` - options passed to the CodeMirror instance see http://codemirror.net/doc/manual.html#config
 * `name` - name applied to the created textarea
 * `autoFocus` - setting applied to the created textarea
 * `preserveScrollPosition` - preserve previous scroll position after updating value
 
 ## Outputs
-All outputs of [ngModel](https://angular.io/api/forms/NgModel#outputs)  
+All outputs of [ngModel](https://angular.io/api/forms/NgModel#outputs) and  
 * `focusChange` - called when the editor is focused or loses focus
 * `scroll` - called when the editor is scrolled
 * `cursorActivity` - called when the text cursor is moved
