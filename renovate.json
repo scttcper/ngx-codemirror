@@ -5,7 +5,9 @@
   "timezone": "America/Los_Angeles",
   "schedule": ["after 10pm and before 5am on every weekday"],
   "prHourlyLimit": 4,
-  "automerge": "minor",
   "rebaseStalePrs": true,
-  "semanticCommits": true
+  "semanticCommits": true,
+  "patch": {
+    "automerge": true
+  }
 }
