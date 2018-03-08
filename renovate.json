@@ -7,6 +7,5 @@
   "prHourlyLimit": 4,
   "automerge": "minor",
   "rebaseStalePrs": true,
-  "semanticCommits": true,
-  "pinVersions": false
+  "semanticCommits": true
 }
