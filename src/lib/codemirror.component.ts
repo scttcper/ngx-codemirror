@@ -97,31 +97,32 @@ export class CodemirrorComponent
     // in order to allow for universal rendering, we import Codemirror runtime with `require` to prevent node errors
     const { fromTextArea } = require('codemirror');
 
-    this.codeMirror = fromTextArea(this.ref.nativeElement, this._options);
     this._ngZone.runOutsideAngular(() => {
+      this.codeMirror = fromTextArea(this.ref.nativeElement, this._options);
       this.codeMirror.on('change', this.codemirrorValueChanged.bind(this));
       this.codeMirror.on('cursorActivity', this.cursorActive.bind(this));
       this.codeMirror.on('focus', this.focusChanged.bind(this, true));
       this.codeMirror.on('blur', this.focusChanged.bind(this, false));
       this.codeMirror.on('scroll', this.scrollChanged.bind(this));
+      this.codeMirror.setValue(this.value);
     });
-    this.codeMirror.setValue(this.value);
   }
   ngDoCheck() {
-    if (this._differ) {
-      // check options have not changed
-      const changes = this._differ.diff(this._options);
-      if (changes) {
-        changes.forEachChangedItem(option =>
-          this.setOptionIfChanged(option.key, option.currentValue),
-        );
-        changes.forEachAddedItem(option =>
-          this.setOptionIfChanged(option.key, option.currentValue),
-        );
-        changes.forEachRemovedItem(option =>
-          this.setOptionIfChanged(option.key, option.currentValue),
-        );
-      }
+    if (!this._differ) {
+      return;
+    }
+    // check options have not changed
+    const changes = this._differ.diff(this._options);
+    if (changes) {
+      changes.forEachChangedItem(option =>
+        this.setOptionIfChanged(option.key, option.currentValue),
+      );
+      changes.forEachAddedItem(option =>
+        this.setOptionIfChanged(option.key, option.currentValue),
+      );
+      changes.forEachRemovedItem(option =>
+        this.setOptionIfChanged(option.key, option.currentValue),
+      );
     }
   }
   ngOnDestroy() {
@@ -153,18 +154,16 @@ export class CodemirrorComponent
   cursorActive(cm: Editor) {
     this.cursorActivity.emit(cm);
   }
-
   /** Implemented as part of ControlValueAccessor. */
   writeValue(value: string): void {
-    if (value === null) {
+    if (value === null || value === undefined) {
       return;
     }
-    if (value && !this.codeMirror) {
+    if (!this.codeMirror) {
       this.value = value;
       return;
     }
     if (
-      value &&
       value !== this.codeMirror.getValue() &&
       normalizeLineEndings(this.codeMirror.getValue()) !==
         normalizeLineEndings(value)

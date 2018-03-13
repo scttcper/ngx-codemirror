@@ -33,6 +33,10 @@ export class AppComponent {
   }
 
   handleChange($event) {
-    console.log('ngModelChange', $event);
+    // console.log('ngModelChange', $event);
+  }
+
+  clear() {
+    this.defaults[this.mode] = '';
   }
 }

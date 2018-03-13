@@ -6,7 +6,7 @@
       <div class="ngx-codemirror mb-2">
         <ngx-codemirror
           [options]="options"
-          [ngModel]="this.defaults[this.mode]"
+          [(ngModel)]="defaults[mode]"
           [disabled]="readOnly"
           [autoFocus]="true"
           (ngModelChange)="handleChange($event)"
@@ -19,12 +19,16 @@
           <option value="text/typescript">TypeScript</option>
         </select>
 
-        <div class="btn-group-toggle mb-1">
+        <div class="btn-group-toggle mb-1 mr-1">
           <label class="btn btn-light" [class.active]="readOnly">
             <input type="checkbox" [(ngModel)]="readOnly" name="readOnly" autocomplete="off">
             Toggle read-only mode (currently {{ readOnly ? 'on' : 'off' }})
           </label>
         </div>
+        <div class="btn-group-toggle mb-1 mr-1">
+          <button class="btn btn-light" (click)="clear()">Clear</button>
+        </div>
+
       </form>
 
     </div>
