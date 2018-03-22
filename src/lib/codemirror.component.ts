@@ -134,7 +134,7 @@ export class CodemirrorComponent
   codemirrorValueChanged(cm: Editor, change: EditorChangeLinkedList) {
     if (change.origin !== 'setValue') {
       this.value = cm.getValue();
-      this.writeValue(cm.getValue());
+      this.onChange(this.value);
     }
   }
   setOptionIfChanged(optionName: string, newValue: any) {
@@ -163,10 +163,10 @@ export class CodemirrorComponent
       this.value = value;
       return;
     }
+    const cur = this.codeMirror.getValue();
     if (
-      value !== this.codeMirror.getValue() &&
-      normalizeLineEndings(this.codeMirror.getValue()) !==
-        normalizeLineEndings(value)
+      value !== cur &&
+      normalizeLineEndings(cur) !== normalizeLineEndings(value)
     ) {
       this.value = value;
       if (this.preserveScrollPosition) {
@@ -176,13 +176,10 @@ export class CodemirrorComponent
           prevScrollPosition.left,
           prevScrollPosition.top,
         );
-        return;
+      } else {
+        this.codeMirror.setValue(this.value);
       }
-      this.codeMirror.setValue(this.value);
-      // Don't call onChange value is from ngModel
-      return;
     }
-    this.onChange(this.value);
   }
 
   /** Implemented as part of ControlValueAccessor. */
