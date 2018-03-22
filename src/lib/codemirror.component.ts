@@ -99,13 +99,13 @@ export class CodemirrorComponent
 
     this._ngZone.runOutsideAngular(() => {
       this.codeMirror = fromTextArea(this.ref.nativeElement, this._options);
-      this.codeMirror.on('change', this.codemirrorValueChanged.bind(this));
       this.codeMirror.on('cursorActivity', this.cursorActive.bind(this));
-      this.codeMirror.on('focus', this.focusChanged.bind(this, true));
-      this.codeMirror.on('blur', this.focusChanged.bind(this, false));
       this.codeMirror.on('scroll', this.scrollChanged.bind(this));
-      this.codeMirror.setValue(this.value);
     });
+    this.codeMirror.on('blur', this.focusChanged.bind(this, false));
+    this.codeMirror.on('focus', this.focusChanged.bind(this, true));
+    this.codeMirror.on('change', this.codemirrorValueChanged.bind(this));
+    this.codeMirror.setValue(this.value);
   }
   ngDoCheck() {
     if (!this._differ) {
