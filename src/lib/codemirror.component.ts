@@ -101,10 +101,16 @@ export class CodemirrorComponent
       this.codeMirror = fromTextArea(this.ref.nativeElement, this._options);
       this.codeMirror.on('cursorActivity', this.cursorActive.bind(this));
       this.codeMirror.on('scroll', this.scrollChanged.bind(this));
-      this.codeMirror.on('blur', this.focusChanged.bind(this, false));
-      this.codeMirror.on('focus', this.focusChanged.bind(this, true));
-      this.codeMirror.on('change', (cm: Editor, change: EditorChangeLinkedList) =>
-        this._ngZone.run(() => this.codemirrorValueChanged(cm, change))
+      this.codeMirror.on('blur', () =>
+        this._ngZone.run(() => this.focusChanged(false)),
+      );
+      this.codeMirror.on('focus', () =>
+        this._ngZone.run(() => this.focusChanged(true)),
+      );
+      this.codeMirror.on(
+        'change',
+        (cm: Editor, change: EditorChangeLinkedList) =>
+          this._ngZone.run(() => this.codemirrorValueChanged(cm, change)),
       );
       this.codeMirror.setValue(this.value);
     });
