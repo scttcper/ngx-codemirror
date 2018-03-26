@@ -19,6 +19,9 @@
   "bugs": "https://github.com/typectrl/ngx-codemirror/issues",
   "keywords": ["ngx", "angular", "angular-component", "wrapper", "codemirror"],
   "ngPackage": {
+    "whitelistedNonPeerDependencies": [
+      "@types/codemirror"
+    ],
     "lib": {
       "entryFile": "public_api.ts",
       "umdModuleIds": {
