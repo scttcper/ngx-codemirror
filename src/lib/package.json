@@ -5,7 +5,7 @@
   "description": "CodeMirror wrapper for Angular",
   "sideEffects": false,
   "dependencies": {
-    "@types/codemirror": "0.0.55"
+    "@types/codemirror": "0.0.56"
   },
   "peerDependencies": {
     "@angular/core": ">=5.2.0",
