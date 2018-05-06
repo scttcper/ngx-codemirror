@@ -11,7 +11,6 @@ import { FooterComponent } from './footer.component';
 @NgModule({
   declarations: [AppComponent, FooterComponent],
   imports: [BrowserModule, FormsModule, CodemirrorModule, MdoButtonModule],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
