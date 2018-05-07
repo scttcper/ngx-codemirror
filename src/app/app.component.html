@@ -6,7 +6,7 @@
       <div class="ngx-codemirror mb-2">
         <ngx-codemirror
           [options]="options"
-          [(ngModel)]="defaults[mode]"
+          [ngModel]="defaults[mode]"
           [disabled]="readOnly"
           [autoFocus]="true"
           (ngModelChange)="handleChange($event)"
