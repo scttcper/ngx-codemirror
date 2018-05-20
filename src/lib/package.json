@@ -8,9 +8,9 @@
     "@types/codemirror": "0.0.56"
   },
   "peerDependencies": {
-    "@angular/core": ">=5.2.0",
-    "@angular/common": ">=5.2.0",
-    "@angular/forms": ">=5.2.0",
+    "@angular/core": "^5.2.0 || ^6.0.0",
+    "@angular/common": "^5.2.0 || ^6.0.0",
+    "@angular/forms": "^5.2.0 || ^6.0.0",
     "codemirror": "^5.34.0"
   },
   "repository": "https://github.com/typectrl/ngx-codemirror.git",
