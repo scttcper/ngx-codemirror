@@ -18,8 +18,13 @@
 
 An Angular component wrapper for [CodeMirror](https://codemirror.net/) that extends ngModel  
 ##### Based on:
-https://github.com/JedWatson/react-codemirror - This project is mostly a port of react-codemirror  
-https://github.com/chymz/ng2-codemirror - Good to reference  
+[JedWatson/react-codemirror](https://github.com/JedWatson/react-codemirror) - This project is mostly a port of react-codemirror  
+[chymz/ng2-codemirror](https://github.com/chymz/ng2-codemirror) - Good to reference  
+
+
+##### Used in:
+tsquery playground: https://tsquery-playground.firebaseapp.com/  
+
 
 ## Install
 `codemirror` is a peer dependency and must also be installed  
