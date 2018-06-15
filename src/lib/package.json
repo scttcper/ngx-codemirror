@@ -2,10 +2,10 @@
   "$schema": "../../node_modules/ng-packagr/package.schema.json",
   "name": "@ctrl/ngx-codemirror",
   "version": "1.3.0",
+  "license": "MIT",
   "description": "CodeMirror wrapper for Angular",
-  "sideEffects": false,
   "dependencies": {
-    "@types/codemirror": "0.0.57"
+    "@types/codemirror": "^0.0.57"
   },
   "peerDependencies": {
     "@angular/core": "^5.2.0 || ^6.0.0",
@@ -13,11 +13,10 @@
     "@angular/forms": "^5.2.0 || ^6.0.0",
     "codemirror": "^5.34.0"
   },
-  "repository": "https://github.com/typectrl/ngx-codemirror.git",
+  "repository": "typectrl/ngx-codemirror",
   "homepage": "https://github.com/typectrl/ngx-codemirror",
-  "license": "MIT",
   "bugs": "https://github.com/typectrl/ngx-codemirror/issues",
-  "keywords": ["ngx", "angular", "angular-component", "wrapper", "codemirror"],
+  "keywords": ["ngx", "angular", "wrapper", "codemirror"],
   "ngPackage": {
     "whitelistedNonPeerDependencies": [
       "@types/codemirror"
