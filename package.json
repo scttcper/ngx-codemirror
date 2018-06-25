@@ -58,7 +58,7 @@
     "rimraf": "2.6.2",
     "semantic-release": "15.3.2",
     "travis-deploy-once": "5.0.0",
-    "ts-node": "6.0.2",
+    "ts-node": "6.0.5",
     "tslint": "5.10.0",
     "typescript": "2.7.2",
     "@angular-devkit/build-angular": "0.6.8"
