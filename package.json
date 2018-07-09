@@ -42,7 +42,7 @@
     "@types/fs-extra": "5.0.4",
     "@types/jasmine": "2.8.8",
     "@types/jasminewd2": "2.0.3",
-    "@types/node": "10.0.10",
+    "@types/node": "10.5.2",
     "codelyzer": "4.3.0",
     "commitizen": "2.9.6",
     "cz-conventional-changelog": "2.1.0",
