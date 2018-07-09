@@ -7,7 +7,7 @@ script:
   - npm run lint
   - npm run test:ci
   - npm run build
-  - npm run bundlesize
+  # - npm run bundlesize
 after_success:
   - bash <(curl -s https://codecov.io/bash)
   - npm run travis-deploy-once "npm run semantic-release"
