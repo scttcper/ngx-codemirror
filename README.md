@@ -14,7 +14,6 @@
 </div>
 
 DEMO: https://typectrl.github.io/ngx-codemirror/  
-StackBlitz: https://stackblitz.com/github/TypeCtrl/ngx-codemirror  
 
 An Angular component wrapper for [CodeMirror](https://codemirror.net/) that extends ngModel  
 ##### Based on:
