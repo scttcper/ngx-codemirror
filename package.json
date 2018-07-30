@@ -27,7 +27,7 @@
     "@angular/http": "6.0.9",
     "@angular/platform-browser": "6.0.9",
     "@angular/platform-browser-dynamic": "6.0.9",
-    "@ctrl/ngx-github-buttons": "2.0.3",
+    "@ctrl/ngx-github-buttons": "2.0.4",
     "bootstrap": "4.1.2",
     "codemirror": "5.39.2",
     "core-js": "2.5.7",
