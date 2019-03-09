@@ -10,8 +10,6 @@ import { Component, VERSION } from '@angular/core';
     <a href="https://github.com/typectrl/ngx-codemirror/blob/master/LICENSE">MIT</a> license
     -
     <a href="https://github.com/typectrl/ngx-codemirror">View Source</a>
-    <br>
-    Listed on <a href="https://angular.parts/package/@ctrl/ngx-codemirror">Angular.parts</a>
   </footer>
   `,
   styles: [
