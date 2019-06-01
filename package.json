@@ -29,7 +29,7 @@
     "@ctrl/ngx-github-buttons": "2.1.0",
     "bootstrap": "4.3.1",
     "codemirror": "5.44.0",
-    "core-js": "2.6.5",
+    "core-js": "2.6.9",
     "rxjs": "6.4.0",
     "zone.js": "0.8.29"
   },
