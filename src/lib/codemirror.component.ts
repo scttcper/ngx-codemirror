@@ -30,6 +30,7 @@ function normalizeLineEndings(str: string) {
 }
 
 declare var require: any;
+var CodeMirror: any;
 
 @Component({
   selector: 'ngx-codemirror',
@@ -80,25 +81,37 @@ export class CodemirrorComponent
   @Output() focusChange = new EventEmitter<boolean>();
   /* called when the editor is scrolled */
   @Output() scroll = new EventEmitter<ScrollInfo>();
-  @ViewChild('ref') ref: ElementRef;
+  @ViewChild('ref', { static: true }) ref: ElementRef;
   value = '';
   disabled = false;
   isFocused = false;
   codeMirror: EditorFromTextArea;
+  /**
+   * either global variable or required library
+   */
+  private _codeMirror: any;
+
   private _differ: KeyValueDiffer<string, any>;
   private _options: any;
 
   constructor(private _differs: KeyValueDiffers, private _ngZone: NgZone) {}
+
+  get codeMirrorGlobal() {
+    if (this._codeMirror) {
+      return this._codeMirror;
+    }
+
+    this._codeMirror = CodeMirror ? CodeMirror : require('codemirror');
+    return this._codeMirror;
+  }
 
   ngAfterViewInit() {
     if (!this.ref) {
       return;
     }
     // in order to allow for universal rendering, we import Codemirror runtime with `require` to prevent node errors
-    const { fromTextArea } = require('codemirror');
-
     this._ngZone.runOutsideAngular(() => {
-      this.codeMirror = fromTextArea(this.ref.nativeElement, this._options);
+      this.codeMirror = this.codeMirrorGlobal.fromTextArea(this.ref.nativeElement, this._options);
       this.codeMirror.on('cursorActivity', cm =>
         this._ngZone.run(() => this.cursorActive(cm)),
       );

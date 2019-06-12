@@ -4,16 +4,25 @@
   <a href="https://www.npmjs.com/package/@ctrl/ngx-codemirror">
     <img src="https://badge.fury.io/js/%40ctrl%2Fngx-codemirror.svg" alt="npm">
   </a> 
-  <a href="https://travis-ci.org/TypeCtrl/ngx-codemirror">
-    <img src="https://travis-ci.org/TypeCtrl/ngx-codemirror.svg?branch=master" alt="travis">
-  </a> 
+  <a href="https://circleci.com/gh/TypeCtrl/ngx-codemirror">
+    <img src="https://circleci.com/gh/TypeCtrl/ngx-codemirror.svg?style=svg" alt="travis">
+  </a>
   <a href="https://codecov.io/github/typectrl/ngx-codemirror">
     <img src="https://img.shields.io/codecov/c/github/typectrl/ngx-codemirror.svg" alt="codecov">
   </a>
   <br>
 </div>
 
-DEMO: https://typectrl.github.io/ngx-codemirror/  
+DEMO: https://ngx-codemirror.netlify.com/
+
+## Dependencies
+
+Latest version available for each version of Angular
+
+| @ctrl/ngx-chartjs | Angular |
+| ----------------- | ------- |
+| 1.3.10            | 6.x 7.x |
+| 2.0.0             | 8.x     |
 
 An Angular component wrapper for [CodeMirror](https://codemirror.net/) that extends ngModel  
 ##### Based on:
@@ -45,8 +54,8 @@ import 'codemirror/mode/markdown/markdown';
 
 Import the base css file and your [theme](https://codemirror.net/demo/theme.html)
 ```scss
-@import "~codemirror/lib/codemirror.css";
-@import "~codemirror/theme/material.css";
+@import "~codemirror/lib/codemirror";
+@import "~codemirror/theme/material";
 ```
 
 Use The Component

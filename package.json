@@ -12,69 +12,52 @@
     "test:ci": "ng test --watch=false --code-coverage --no-progress --browsers=ChromeCI",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
-    "commit": "git-cz",
-    "bundlesize": "npx bundlesize",
-    "ghpages": "ng build --prod --no-progress --baseHref='/ngx-codemirror/'",
+    "ghpages": "del dist && ng build --prod --no-progress",
     "semantic-release": "cd dist && semantic-release"
   },
   "private": true,
   "dependencies": {
-    "@angular/common": "7.2.11",
-    "@angular/compiler": "7.2.11",
-    "@angular/core": "7.2.11",
-    "@angular/forms": "7.2.11",
-    "@angular/http": "7.2.11",
-    "@angular/platform-browser": "7.2.11",
-    "@angular/platform-browser-dynamic": "7.2.11",
-    "@ctrl/ngx-github-buttons": "2.1.0",
+    "@angular/common": "8.0.0",
+    "@angular/compiler": "8.0.0",
+    "@angular/core": "8.0.0",
+    "@angular/forms": "8.0.0",
+    "@angular/platform-browser": "8.0.0",
+    "@angular/platform-browser-dynamic": "8.0.0",
+    "@ctrl/ngx-github-buttons": "3.0.0",
     "bootstrap": "4.3.1",
-    "codemirror": "5.44.0",
-    "core-js": "2.6.5",
-    "rxjs": "6.4.0",
-    "zone.js": "0.8.29"
+    "codemirror": "5.47.0",
+    "core-js": "3.1.3",
+    "rxjs": "6.5.2",
+    "zone.js": "0.9.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "0.13.7",
-    "@angular/cli": "7.3.7",
-    "@angular/compiler-cli": "7.2.11",
-    "@angular/language-service": "7.2.11",
-    "@types/codemirror": "0.0.72",
-    "@types/fs-extra": "5.0.5",
-    "@types/jasmine": "3.3.9",
-    "@types/node": "11.11.0",
-    "codelyzer": "4.5.0",
-    "fs-extra": "7.0.1",
-    "jasmine-core": "3.3.0",
-    "karma": "4.0.1",
+    "@angular-devkit/build-angular": "0.800.2",
+    "@angular/cli": "8.0.2",
+    "@angular/compiler-cli": "8.0.0",
+    "@angular/language-service": "8.0.0",
+    "@types/codemirror": "0.0.74",
+    "@types/fs-extra": "7.0.0",
+    "@types/jasmine": "3.3.13",
+    "@types/node": "12.0.8",
+    "codelyzer": "5.1.0",
+    "del-cli": "^2.0.0",
+    "fs-extra": "8.0.1",
+    "jasmine-core": "3.4.0",
+    "karma": "4.1.0",
     "karma-chrome-launcher": "2.2.0",
     "karma-cli": "2.0.0",
     "karma-coverage-istanbul-reporter": "2.0.5",
     "karma-jasmine": "2.0.1",
-    "karma-jasmine-html-reporter": "1.4.0",
+    "karma-jasmine-html-reporter": "1.4.2",
     "karma-mocha-reporter": "2.2.5",
-    "ng-packagr": "4.7.1",
-    "rimraf": "2.6.3",
-    "semantic-release": "15.13.3",
-    "ts-node": "8.0.3",
-    "tsickle": "0.34.3",
-    "tslint": "5.13.1",
-    "typescript": "3.2.4"
+    "ng-packagr": "5.3.0",
+    "semantic-release": "15.13.12",
+    "ts-node": "8.2.0",
+    "tsickle": "0.35.0",
+    "tslint": "5.17.0",
+    "typescript": "3.4.5"
   },
   "release": {
     "branch": "master"
-  },
-  "bundlesize": [
-    {
-      "path": "./dist/bundles/ctrl-ngx-codemirror.umd.min.js",
-      "maxSize": "2 kB"
-    },
-    {
-      "path": "./dist/esm2015/ctrl-ngx-codemirror.js",
-      "maxSize": "3 kB"
-    },
-    {
-      "path": "./dist/esm5/ctrl-ngx-codemirror.js",
-      "maxSize": "2 kB"
-    }
-  ]
+  }
 }

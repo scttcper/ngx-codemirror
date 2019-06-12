@@ -38,7 +38,7 @@ $enable-gradients: true;
 @import "~bootstrap/scss/utilities";
 @import "~bootstrap/scss/print";
 
-@import "~codemirror/lib/codemirror.css";
+@import "~codemirror/lib/codemirror";
 
 html {
   -moz-osx-font-smoothing: grayscale;
