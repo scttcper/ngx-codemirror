@@ -37,7 +37,7 @@
     "@angular/language-service": "8.0.3",
     "@types/codemirror": "0.0.76",
     "@types/fs-extra": "7.0.0",
-    "@types/jasmine": "3.3.13",
+    "@types/jasmine": "3.3.16",
     "@types/node": "12.0.8",
     "codelyzer": "5.1.0",
     "del-cli": "^2.0.0",
