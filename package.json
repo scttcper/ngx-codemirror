@@ -38,7 +38,7 @@
     "@types/codemirror": "0.0.76",
     "@types/fs-extra": "7.0.0",
     "@types/jasmine": "3.3.16",
-    "@types/node": "12.0.8",
+    "@types/node": "12.0.12",
     "codelyzer": "5.1.0",
     "del-cli": "^2.0.0",
     "fs-extra": "8.0.1",
