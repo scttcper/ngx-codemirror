@@ -1,11 +1,11 @@
 import {
-  forwardRef,
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   DoCheck,
   ElementRef,
   EventEmitter,
+  forwardRef,
   Input,
   KeyValueDiffer,
   KeyValueDiffers,
@@ -37,14 +37,15 @@ var CodeMirror: any;
 @Component({
   selector: 'ngx-codemirror',
   template: `
-  <textarea
-    [name]="name"
-    class="ngx-codemirror {{ className }}"
-    [class.ngx-codemirror--focused]="isFocused"
-    autocomplete="off"
-    [autofocus]="autoFocus"
-    #ref>
-  </textarea>
+    <textarea
+      [name]="name"
+      class="ngx-codemirror {{ className }}"
+      [class.ngx-codemirror--focused]="isFocused"
+      autocomplete="off"
+      [autofocus]="autoFocus"
+      #ref
+    >
+    </textarea>
   `,
   providers: [
     {
@@ -113,7 +114,10 @@ export class CodemirrorComponent
     }
     // in order to allow for universal rendering, we import Codemirror runtime with `require` to prevent node errors
     this._ngZone.runOutsideAngular(() => {
-      this.codeMirror = this.codeMirrorGlobal.fromTextArea(this.ref.nativeElement, this._options);
+      this.codeMirror = this.codeMirrorGlobal.fromTextArea(
+        this.ref.nativeElement,
+        this._options,
+      );
       this.codeMirror.on('cursorActivity', cm =>
         this._ngZone.run(() => this.cursorActive(cm)),
       );
