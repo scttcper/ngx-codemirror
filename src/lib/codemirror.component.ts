@@ -170,7 +170,10 @@ export class CodemirrorComponent
     if (!this.codeMirror) {
       return;
     }
-    this.codeMirror.setOption(optionName, newValue);
+
+    // cast to any to handle strictly typed option names
+    // could possibly import settings strings available in the future
+    this.codeMirror.setOption(optionName as any, newValue);
   }
   focusChanged(focused: boolean) {
     this.onTouched();
