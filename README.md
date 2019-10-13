@@ -82,6 +82,7 @@ All outputs of [ngModel](https://angular.io/api/forms/NgModel#outputs) and
 * `focusChange` - called when the editor is focused or loses focus
 * `scroll` - called when the editor is scrolled (not wrapped inside angular change detection must manually trigger change detection or run inside ngzone)
 * `cursorActivity` - called when the text cursor is moved
+* `drop` - called when file(s) are dropped
 
 ## License
 MIT
