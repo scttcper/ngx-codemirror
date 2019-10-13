@@ -84,6 +84,8 @@ export class CodemirrorComponent
   @Output() focusChange = new EventEmitter<boolean>();
   /* called when the editor is scrolled */
   @Output() scroll = new EventEmitter<ScrollInfo>();
+  /* called when file(s) are dropped */
+  @Output() drop = new EventEmitter<[Editor, DragEvent]>();
   @ViewChild('ref', { static: true }) ref: ElementRef;
   value = '';
   disabled = false;
@@ -133,6 +135,12 @@ export class CodemirrorComponent
         (cm: Editor, change: EditorChangeLinkedList) =>
           this._ngZone.run(() => this.codemirrorValueChanged(cm, change)),
       );
+      this.codeMirror.on(
+        'drop',
+        (cm: Editor, e: DragEvent) => {
+          this._ngZone.run(() => this.dropFiles(cm, e));
+        }
+      )
       this.codeMirror.setValue(this.value);
     });
   }
@@ -185,6 +193,9 @@ export class CodemirrorComponent
   }
   cursorActive(cm: Editor) {
     this.cursorActivity.emit(cm);
+  }
+  dropFiles(cm: Editor, e: DragEvent) {
+    this.drop.emit([cm, e]);
   }
   /** Implemented as part of ControlValueAccessor. */
   writeValue(value: string): void {
