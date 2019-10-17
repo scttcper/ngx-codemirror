@@ -140,7 +140,7 @@ export class CodemirrorComponent
         (cm: Editor, e: DragEvent) => {
           this._ngZone.run(() => this.dropFiles(cm, e));
         }
-      )
+      );
       this.codeMirror.setValue(this.value);
     });
   }
