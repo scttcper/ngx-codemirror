@@ -3,7 +3,7 @@
   <br>
   <a href="https://www.npmjs.com/package/@ctrl/ngx-codemirror">
     <img src="https://badge.fury.io/js/%40ctrl%2Fngx-codemirror.svg" alt="npm">
-  </a> 
+  </a>
   <a href="https://circleci.com/gh/TypeCtrl/ngx-codemirror">
     <img src="https://circleci.com/gh/TypeCtrl/ngx-codemirror.svg?style=svg" alt="travis">
   </a>
@@ -24,30 +24,40 @@ Latest version available for each version of Angular
 | 1.3.10            | 6.x 7.x |
 | 2.0.0             | 8.x     |
 
-An Angular component wrapper for [CodeMirror](https://codemirror.net/) that extends ngModel  
+An Angular component wrapper for [CodeMirror](https://codemirror.net/) that extends ngModel
 ##### Based on:
-[JedWatson/react-codemirror](https://github.com/JedWatson/react-codemirror) - This project is mostly a port of react-codemirror  
-[chymz/ng2-codemirror](https://github.com/chymz/ng2-codemirror) - Good to reference  
+[JedWatson/react-codemirror](https://github.com/JedWatson/react-codemirror) - This project is mostly a port of react-codemirror
+[chymz/ng2-codemirror](https://github.com/chymz/ng2-codemirror) - Good to reference
 
 
 ##### Used in:
-tsquery playground: https://tsquery-playground.firebaseapp.com/  
+tsquery playground: https://tsquery-playground.firebaseapp.com/
 
 
 ## Install
-`codemirror` is a peer dependency and must also be installed  
+`codemirror` is a peer dependency and must also be installed
 ```sh
 npm install @ctrl/ngx-codemirror codemirror
 ```
 
 ## Use
 Import `CodemirrorModule` and bring in the [codemirror files for parsing the langague](https://codemirror.net/mode/index.html) you wish to use.
-```ts
-// Added to NgModule
-import { CodemirrorModule } from '@ctrl/ngx-codemirror';
 
-// Import your required language in main.ts or at the root of your application
-// see https://codemirror.net/mode/index.html
+In your `NgModule`:
+```ts
+import { CodemirrorModule } from '@ctrl/ngx-codemirror';
+import { NgModule } from '@angular/core'; // required
+
+  // add to imports:
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ...
+  ]
+```
+
+In your `main.ts` or at the root of your application, see [documentation](https://codemirror.net/mode/index.html):
+```ts
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/markdown/markdown';
 ```
@@ -60,8 +70,8 @@ Import the base css file and your [theme](https://codemirror.net/demo/theme.html
 
 Use The Component
 ```html
-<ngx-codemirror 
-  [(ngModel)]="content" 
+<ngx-codemirror
+  [(ngModel)]="content"
   [options]="{
     lineNumbers: true,
     theme: 'material',
@@ -71,14 +81,14 @@ Use The Component
 ```
 
 ## Inputs
-All Inputs of [ngModel](https://angular.io/api/forms/NgModel#inputs) and  
+All Inputs of [ngModel](https://angular.io/api/forms/NgModel#inputs) and
 * `options` - options passed to the CodeMirror instance see http://codemirror.net/doc/manual.html#config
 * `name` - name applied to the created textarea
 * `autoFocus` - setting applied to the created textarea
 * `preserveScrollPosition` - preserve previous scroll position after updating value
 
 ## Outputs
-All outputs of [ngModel](https://angular.io/api/forms/NgModel#outputs) and  
+All outputs of [ngModel](https://angular.io/api/forms/NgModel#outputs) and
 * `focusChange` - called when the editor is focused or loses focus
 * `scroll` - called when the editor is scrolled (not wrapped inside angular change detection must manually trigger change detection or run inside ngzone)
 * `cursorActivity` - called when the text cursor is moved
