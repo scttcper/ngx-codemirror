@@ -19,10 +19,10 @@ DEMO: https://ngx-codemirror.netlify.com/
 
 Latest version available for each version of Angular
 
-| @ctrl/ngx-chartjs | Angular |
-| ----------------- | ------- |
-| 1.3.10            | 6.x 7.x |
-| 2.0.0             | 8.x     |
+| @ctrl/ngx-codemirror | Angular |
+| -------------------- | ------- |
+| 1.3.10               | 6.x 7.x |
+| 2.0.0                | 8.x     |
 
 An Angular component wrapper for [CodeMirror](https://codemirror.net/) that extends ngModel
 ##### Based on:
