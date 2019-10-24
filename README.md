@@ -52,6 +52,7 @@ import { NgModule } from '@angular/core'; // required
   imports: [
     BrowserModule,
     FormsModule,
+    CodemirrorModule,
     ...
   ]
 ```
