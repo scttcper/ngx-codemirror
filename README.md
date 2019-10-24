@@ -45,8 +45,9 @@ Import `CodemirrorModule` and bring in the [codemirror files for parsing the lan
 
 In your `NgModule`:
 ```ts
+import { FormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
 import { CodemirrorModule } from '@ctrl/ngx-codemirror';
-import { NgModule } from '@angular/core'; // required
 
   // add to imports:
   imports: [
