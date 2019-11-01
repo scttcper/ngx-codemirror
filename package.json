@@ -23,7 +23,7 @@
     "@angular/forms": "8.2.13",
     "@angular/platform-browser": "8.2.13",
     "@angular/platform-browser-dynamic": "8.2.13",
-    "@ctrl/ngx-github-buttons": "3.2.3",
+    "@ctrl/ngx-github-buttons": "3.2.7",
     "bootstrap": "4.3.1",
     "codemirror": "5.49.0",
     "core-js": "3.3.2",
