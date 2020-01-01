@@ -35,7 +35,7 @@
     "@angular/cli": "8.3.21",
     "@angular/compiler-cli": "8.2.14",
     "@angular/language-service": "8.2.14",
-    "@types/codemirror": "0.0.81",
+    "@types/codemirror": "0.0.82",
     "@types/fs-extra": "8.0.1",
     "@types/jasmine": "3.4.6",
     "@types/node": "12.11.7",
