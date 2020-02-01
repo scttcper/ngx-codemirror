@@ -24,7 +24,7 @@
     "@angular/platform-browser": "8.2.14",
     "@angular/platform-browser-dynamic": "8.2.14",
     "@ctrl/ngx-github-buttons": "3.2.7",
-    "bootstrap": "4.3.1",
+    "bootstrap": "4.4.1",
     "codemirror": "5.49.2",
     "core-js": "3.3.6",
     "rxjs": "6.5.4",
