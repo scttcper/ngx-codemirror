@@ -22,7 +22,8 @@ Latest version available for each version of Angular
 | @ctrl/ngx-codemirror | Angular |
 | -------------------- | ------- |
 | 1.3.10               | 6.x 7.x |
-| 2.0.0                | 8.x     |
+| 2.2.1                | 8.x     |
+| current              | >= 9.x  |
 
 An Angular component wrapper for [CodeMirror](https://codemirror.net/) that extends ngModel
 ##### Based on:
