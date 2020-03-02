@@ -10,7 +10,7 @@
   "peerDependencies": {
     "@angular/core": ">=9.0.0-0",
     "@angular/forms": ">=9.0.0-0",
-    "codemirror": "^5.51.0"
+    "codemirror": "^5.52.0"
   },
   "repository": "typectrl/ngx-codemirror",
   "homepage": "https://github.com/typectrl/ngx-codemirror",
