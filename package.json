@@ -36,7 +36,7 @@
     "@angular/cli": "9.1.0",
     "@angular/compiler-cli": "9.1.0",
     "@angular/language-service": "9.1.0",
-    "@types/codemirror": "0.0.88",
+    "@types/codemirror": "0.0.89",
     "@types/jasmine": "3.5.10",
     "@types/node": "13.9.8",
     "codelyzer": "5.2.1",
