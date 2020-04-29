@@ -30,9 +30,7 @@ function normalizeLineEndings(str: string) {
 }
 
 declare var require: any;
-/* tslint:disable */
-var CodeMirror: any;
-/* tslint:enable */
+declare var CodeMirror: any;
 
 @Component({
   selector: 'ngx-codemirror',
@@ -106,7 +104,7 @@ export class CodemirrorComponent
       return this._codeMirror;
     }
 
-    this._codeMirror = CodeMirror ? CodeMirror : require('codemirror');
+    this._codeMirror = typeof CodeMirror !== 'undefined' ? CodeMirror : require('codemirror');
     return this._codeMirror;
   }
 
