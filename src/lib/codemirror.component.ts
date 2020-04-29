@@ -86,17 +86,17 @@ export class CodemirrorComponent
   @Output() scroll = new EventEmitter<ScrollInfo>();
   /* called when file(s) are dropped */
   @Output() drop = new EventEmitter<[Editor, DragEvent]>();
-  @ViewChild('ref', { static: true }) ref: ElementRef;
+  @ViewChild('ref', { static: true }) ref!: ElementRef;
   value = '';
   disabled = false;
   isFocused = false;
-  codeMirror: EditorFromTextArea;
+  codeMirror?: EditorFromTextArea;
   /**
    * either global variable or required library
    */
   private _codeMirror: any;
 
-  private _differ: KeyValueDiffer<string, any>;
+  private _differ?: KeyValueDiffer<string, any>;
   private _options: any;
 
   constructor(private _differs: KeyValueDiffers, private _ngZone: NgZone) {}
@@ -119,7 +119,7 @@ export class CodemirrorComponent
       this.codeMirror = this.codeMirrorGlobal.fromTextArea(
         this.ref.nativeElement,
         this._options,
-      );
+      ) as EditorFromTextArea;
       this.codeMirror.on('cursorActivity', cm =>
         this._ngZone.run(() => this.cursorActive(cm)),
       );
