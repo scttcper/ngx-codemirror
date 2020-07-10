@@ -7,7 +7,7 @@ const defaults = {
     `const component = {
   name: "@ctrl/ngx-codemirror",
   author: "Scott Cooper",
-  repo: "https://github.com/typectrl/ngx-codemirror"
+  repo: "https://github.com/scttcper/ngx-codemirror"
 };
 const hello: string = 'world';`,
 };
@@ -18,25 +18,25 @@ const hello: string = 'world';`,
 })
 export class AppComponent {
   readOnly = false;
-  mode = 'markdown';
-  options: any = {
+  mode: keyof typeof defaults = 'markdown';
+  options = {
     lineNumbers: true,
     mode: this.mode,
   };
   defaults = defaults;
 
-  changeMode() {
+  changeMode(): void {
     this.options = {
       ...this.options,
       mode: this.mode,
     };
   }
 
-  handleChange($event) {
+  handleChange($event: Event): void {
     console.log('ngModelChange', $event);
   }
 
-  clear() {
+  clear(): void {
     this.defaults[this.mode] = '';
   }
 }

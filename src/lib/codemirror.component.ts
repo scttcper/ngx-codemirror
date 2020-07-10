@@ -22,7 +22,7 @@ import {
   ScrollInfo,
 } from 'codemirror';
 
-function normalizeLineEndings(str: string) {
+function normalizeLineEndings(str: string): string {
   if (!str) {
     return str;
   }
@@ -81,8 +81,10 @@ export class CodemirrorComponent
   /* called when the editor is focused or loses focus */
   @Output() focusChange = new EventEmitter<boolean>();
   /* called when the editor is scrolled */
+  // tslint:disable-next-line:no-output-native
   @Output() scroll = new EventEmitter<ScrollInfo>();
   /* called when file(s) are dropped */
+  // tslint:disable-next-line:no-output-native
   @Output() drop = new EventEmitter<[Editor, DragEvent]>();
   @ViewChild('ref', { static: true }) ref!: ElementRef;
   value = '';
@@ -99,7 +101,7 @@ export class CodemirrorComponent
 
   constructor(private _differs: KeyValueDiffers, private _ngZone: NgZone) {}
 
-  get codeMirrorGlobal() {
+  get codeMirrorGlobal(): any {
     if (this._codeMirror) {
       return this._codeMirror;
     }
@@ -108,7 +110,7 @@ export class CodemirrorComponent
     return this._codeMirror;
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     if (!this.ref) {
       return;
     }
@@ -142,7 +144,7 @@ export class CodemirrorComponent
       this.codeMirror.setValue(this.value);
     });
   }
-  ngDoCheck() {
+  ngDoCheck(): void {
     if (!this._differ) {
       return;
     }
@@ -160,19 +162,19 @@ export class CodemirrorComponent
       );
     }
   }
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     // is there a lighter-weight way to remove the cm instance?
     if (this.codeMirror) {
       this.codeMirror.toTextArea();
     }
   }
-  codemirrorValueChanged(cm: Editor, change: EditorChangeLinkedList) {
+  codemirrorValueChanged(cm: Editor, change: EditorChangeLinkedList): void {
     if (change.origin !== 'setValue') {
       this.value = cm.getValue();
       this.onChange(this.value);
     }
   }
-  setOptionIfChanged(optionName: string, newValue: any) {
+  setOptionIfChanged(optionName: string, newValue: any): void {
     if (!this.codeMirror) {
       return;
     }
@@ -181,18 +183,18 @@ export class CodemirrorComponent
     // could possibly import settings strings available in the future
     this.codeMirror.setOption(optionName as any, newValue);
   }
-  focusChanged(focused: boolean) {
+  focusChanged(focused: boolean): void {
     this.onTouched();
     this.isFocused = focused;
     this.focusChange.emit(focused);
   }
-  scrollChanged(cm: Editor) {
+  scrollChanged(cm: Editor): void {
     this.scroll.emit(cm.getScrollInfo());
   }
-  cursorActive(cm: Editor) {
+  cursorActive(cm: Editor): void {
     this.cursorActivity.emit(cm);
   }
-  dropFiles(cm: Editor, e: DragEvent) {
+  dropFiles(cm: Editor, e: DragEvent): void {
     this.drop.emit([cm, e]);
   }
   /** Implemented as part of ControlValueAccessor. */

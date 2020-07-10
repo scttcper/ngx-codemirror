@@ -7,9 +7,9 @@ import { Component, VERSION } from '@angular/core';
     Angular {{ version }}
     <br>
     Released under the
-    <a href="https://github.com/typectrl/ngx-codemirror/blob/master/LICENSE">MIT</a> license
+    <a href="https://github.com/scttcper/ngx-codemirror/blob/master/LICENSE">MIT</a> license
     -
-    <a href="https://github.com/typectrl/ngx-codemirror">View Source</a>
+    <a href="https://github.com/scttcper/ngx-codemirror">View Source</a>
   </footer>
   `,
   styles: [

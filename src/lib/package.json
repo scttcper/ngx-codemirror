@@ -5,16 +5,16 @@
   "license": "MIT",
   "description": "CodeMirror wrapper for Angular",
   "dependencies": {
-    "@types/codemirror": "0.0.89"
+    "@types/codemirror": "^0.0.96"
   },
   "peerDependencies": {
-    "@angular/core": ">=9.0.0-0",
-    "@angular/forms": ">=9.0.0-0",
-    "codemirror": "^5.52.0"
+    "@angular/core": ">=10.0.0-0",
+    "@angular/forms": ">=10.0.0-0",
+    "codemirror": "^5.55.0"
   },
-  "repository": "typectrl/ngx-codemirror",
-  "homepage": "https://github.com/typectrl/ngx-codemirror",
-  "bugs": "https://github.com/typectrl/ngx-codemirror/issues",
+  "repository": "scttcper/ngx-codemirror",
+  "homepage": "https://github.com/scttcper/ngx-codemirror",
+  "bugs": "https://github.com/scttcper/ngx-codemirror/issues",
   "keywords": ["ngx", "angular", "wrapper", "codemirror"],
   "ngPackage": {
     "whitelistedNonPeerDependencies": [
