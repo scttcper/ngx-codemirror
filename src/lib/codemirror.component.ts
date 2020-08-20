@@ -41,6 +41,7 @@ declare var CodeMirror: any;
       [class.ngx-codemirror--focused]="isFocused"
       autocomplete="off"
       [autofocus]="autoFocus"
+      [placeholder]="placeholder"
       #ref
     >
     </textarea>
@@ -63,6 +64,8 @@ export class CodemirrorComponent
   @Input() name = 'codemirror';
   /* autofocus setting applied to the created textarea */
   @Input() autoFocus = false;
+  /* placeholder applied to the created textarea */
+  @Input() placeholder = '';
   /**
    * set options for codemirror
    * @link http://codemirror.net/doc/manual.html#config

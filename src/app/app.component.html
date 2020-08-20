@@ -17,6 +17,7 @@
           [ngModel]="defaults[mode]"
           [disabled]="readOnly"
           [autoFocus]="true"
+          [placeholder]="placeholder"
           (ngModelChange)="handleChange($event)"
         ></ngx-codemirror>
       </div>

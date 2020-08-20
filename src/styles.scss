@@ -58,3 +58,7 @@ h1 {
 .ngx-codemirror {
   border: 1px solid #ccc;
 }
+
+.ngx-codemirror pre.CodeMirror-placeholder { 
+  color: #999; 
+}    

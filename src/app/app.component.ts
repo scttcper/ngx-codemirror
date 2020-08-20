@@ -24,6 +24,7 @@ export class AppComponent {
     mode: this.mode,
   };
   defaults = defaults;
+  placeholder = 'Write your code here...'
 
   changeMode(): void {
     this.options = {
