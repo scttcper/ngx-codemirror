@@ -70,6 +70,7 @@ In your `main.ts` or at the root of your application, see [documentation](https:
 ```ts
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/markdown/markdown';
+import 'codemirror/addon/display/placeholder';
 ```
 
 Import the base css file and your [theme](https://codemirror.net/demo/theme.html)
@@ -99,6 +100,7 @@ All Inputs of [ngModel](https://angular.io/api/forms/NgModel#inputs) and
 - `options` - options passed to the CodeMirror instance see http://codemirror.net/doc/manual.html#config
 - `name` - name applied to the created textarea
 - `autoFocus` - setting applied to the created textarea
+- `placeholder` - placeholder for empty created textarea
 - `preserveScrollPosition` - preserve previous scroll position after updating value
 
 ## Outputs
