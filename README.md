@@ -47,7 +47,7 @@ npm install @ctrl/ngx-codemirror codemirror
 
 ## Use
 
-Import `CodemirrorModule` and `FormsModule` and bring in the [codemirror files for parsing the langague](https://codemirror.net/mode/index.html) you wish to use.
+Import `CodemirrorModule` and `FormsModule` and bring in the [codemirror files for parsing the language](https://codemirror.net/mode/index.html) you wish to use.
 
 In your `NgModule`:
 
