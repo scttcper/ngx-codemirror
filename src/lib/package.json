@@ -5,12 +5,12 @@
   "license": "MIT",
   "description": "CodeMirror wrapper for Angular",
   "dependencies": {
-    "@types/codemirror": "^0.0.96"
+    "@types/codemirror": "^0.0.98"
   },
   "peerDependencies": {
     "@angular/core": ">=10.0.0-0",
     "@angular/forms": ">=10.0.0-0",
-    "codemirror": "^5.55.0"
+    "codemirror": ">=5.58.0"
   },
   "repository": "scttcper/ngx-codemirror",
   "homepage": "https://github.com/scttcper/ngx-codemirror",
