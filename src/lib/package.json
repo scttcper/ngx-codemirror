@@ -5,7 +5,7 @@
   "license": "MIT",
   "description": "CodeMirror wrapper for Angular",
   "dependencies": {
-    "@types/codemirror": "^0.0.98"
+    "@types/codemirror": "^0.0.99"
   },
   "peerDependencies": {
     "@angular/core": ">=10.0.0-0",
