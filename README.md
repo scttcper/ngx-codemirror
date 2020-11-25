@@ -1,17 +1,4 @@
-<div align="center">
-  <h1>ngx-codemirror</h1>
-  <br>
-  <a href="https://www.npmjs.com/package/@ctrl/ngx-codemirror">
-    <img src="https://badge.fury.io/js/%40ctrl%2Fngx-codemirror.svg" alt="npm">
-  </a>
-  <a href="https://circleci.com/gh/scttcper/ngx-codemirror">
-    <img src="https://circleci.com/gh/scttcper/ngx-codemirror.svg?style=svg" alt="travis">
-  </a>
-  <a href="https://codecov.io/github/scttcper/ngx-codemirror">
-    <img src="https://img.shields.io/codecov/c/github/scttcper/ngx-codemirror.svg" alt="codecov">
-  </a>
-  <br>
-</div>
+# ngx-codemirror [![npm](https://badgen.net/npm/v/@ctrl/ngx-codemirror)](https://www.npmjs.com/package/@ctrl/ngx-codemirror) [![CircleCI](https://badgen.net/circleci/github/scttcper/ngx-codemirror)](https://circleci.com/gh/scttcper/ngx-codemirror) [![coverage](https://badgen.net/codecov/c/github/scttcper/ngx-codemirror)](https://codecov.io/gh/scttcper/ngx-codemirror)
 
 DEMO: https://ngx-codemirror.vercel.app  
 
@@ -26,12 +13,7 @@ Latest version available for each version of Angular
 | 3.1.3                | 9.x     |
 | current              | >= 10.x |
 
-An Angular component wrapper for [CodeMirror](https://codemirror.net/) that extends ngModel
-
-##### Based on:
-
-[JedWatson/react-codemirror](https://github.com/JedWatson/react-codemirror) - This project is mostly a port of react-codemirror
-[chymz/ng2-codemirror](https://github.com/chymz/ng2-codemirror) - Good to reference
+An Angular component wrapper for [CodeMirror](https://codemirror.net/) that extends ngModel. Based on [JedWatson/react-codemirror](https://github.com/JedWatson/react-codemirror)
 
 ##### Used in:
 
