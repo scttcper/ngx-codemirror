@@ -169,8 +169,9 @@ export class CodemirrorComponent
     }
   }
   codemirrorValueChanged(cm: Editor, change: EditorChangeLinkedList): void {
-    if (change.origin !== 'setValue') {
-      this.value = cm.getValue();
+    const cmVal = cm.getValue();
+    if (this.value !== cmVal) {
+      this.value = cmVal;
       this.onChange(this.value);
     }
   }
