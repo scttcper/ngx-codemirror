@@ -15,12 +15,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import {
-  Editor,
-  EditorChangeLinkedList,
-  EditorFromTextArea,
-  ScrollInfo,
-} from 'codemirror';
+import { Editor, EditorChange, EditorFromTextArea, ScrollInfo } from 'codemirror';
 
 function normalizeLineEndings(str: string): string {
   if (!str) {
@@ -56,7 +51,8 @@ declare var CodeMirror: any;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CodemirrorComponent
-  implements AfterViewInit, OnDestroy, ControlValueAccessor, DoCheck {
+  implements AfterViewInit, OnDestroy, ControlValueAccessor, DoCheck
+{
   /* class applied to the created textarea */
   @Input() className = '';
   /* name applied to the created textarea */
@@ -81,12 +77,12 @@ export class CodemirrorComponent
   /* called when the editor is focused or loses focus */
   @Output() focusChange = new EventEmitter<boolean>();
   /* called when the editor is scrolled */
-  // tslint:disable-next-line:no-output-native
+  // eslint-disable-next-line @angular-eslint/no-output-native
   @Output() scroll = new EventEmitter<ScrollInfo>();
   /* called when file(s) are dropped */
-  // tslint:disable-next-line:no-output-native
+  // eslint-disable-next-line @angular-eslint/no-output-native
   @Output() drop = new EventEmitter<[Editor, DragEvent]>();
-  @ViewChild('ref', { static: true }) ref!: ElementRef;
+  @ViewChild('ref') ref!: ElementRef<HTMLTextAreaElement>;
   value = '';
   disabled = false;
   isFocused = false;
@@ -106,45 +102,31 @@ export class CodemirrorComponent
       return this._codeMirror;
     }
 
+    // in order to allow for universal rendering, we import Codemirror runtime with `require` to prevent node errors
     this._codeMirror = typeof CodeMirror !== 'undefined' ? CodeMirror : require('codemirror');
     return this._codeMirror;
   }
 
-  ngAfterViewInit(): void {
-    if (!this.ref) {
-      return;
-    }
-    // in order to allow for universal rendering, we import Codemirror runtime with `require` to prevent node errors
+  ngAfterViewInit() {
     this._ngZone.runOutsideAngular(() => {
       this.codeMirror = this.codeMirrorGlobal.fromTextArea(
         this.ref.nativeElement,
         this._options,
       ) as EditorFromTextArea;
-      this.codeMirror.on('cursorActivity', cm =>
-        this._ngZone.run(() => this.cursorActive(cm)),
-      );
+      this.codeMirror.on('cursorActivity', cm => this._ngZone.run(() => this.cursorActive(cm)));
       this.codeMirror.on('scroll', this.scrollChanged.bind(this));
-      this.codeMirror.on('blur', () =>
-        this._ngZone.run(() => this.focusChanged(false)),
+      this.codeMirror.on('blur', () => this._ngZone.run(() => this.focusChanged(false)));
+      this.codeMirror.on('focus', () => this._ngZone.run(() => this.focusChanged(true)));
+      this.codeMirror.on('change', (cm, change) =>
+        this._ngZone.run(() => this.codemirrorValueChanged(cm, change)),
       );
-      this.codeMirror.on('focus', () =>
-        this._ngZone.run(() => this.focusChanged(true)),
-      );
-      this.codeMirror.on(
-        'change',
-        (cm: Editor, change: EditorChangeLinkedList) =>
-          this._ngZone.run(() => this.codemirrorValueChanged(cm, change)),
-      );
-      this.codeMirror.on(
-        'drop',
-        (cm: Editor, e: DragEvent) => {
-          this._ngZone.run(() => this.dropFiles(cm, e));
-        }
-      );
+      this.codeMirror.on('drop', (cm, e) => {
+        this._ngZone.run(() => this.dropFiles(cm, e));
+      });
       this.codeMirror.setValue(this.value);
     });
   }
-  ngDoCheck(): void {
+  ngDoCheck() {
     if (!this._differ) {
       return;
     }
@@ -154,28 +136,26 @@ export class CodemirrorComponent
       changes.forEachChangedItem(option =>
         this.setOptionIfChanged(option.key, option.currentValue),
       );
-      changes.forEachAddedItem(option =>
-        this.setOptionIfChanged(option.key, option.currentValue),
-      );
+      changes.forEachAddedItem(option => this.setOptionIfChanged(option.key, option.currentValue));
       changes.forEachRemovedItem(option =>
         this.setOptionIfChanged(option.key, option.currentValue),
       );
     }
   }
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     // is there a lighter-weight way to remove the cm instance?
     if (this.codeMirror) {
       this.codeMirror.toTextArea();
     }
   }
-  codemirrorValueChanged(cm: Editor, change: EditorChangeLinkedList): void {
+  codemirrorValueChanged(cm: Editor, change: EditorChange) {
     const cmVal = cm.getValue();
     if (this.value !== cmVal) {
       this.value = cmVal;
       this.onChange(this.value);
     }
   }
-  setOptionIfChanged(optionName: string, newValue: any): void {
+  setOptionIfChanged(optionName: string, newValue: any) {
     if (!this.codeMirror) {
       return;
     }
@@ -184,22 +164,22 @@ export class CodemirrorComponent
     // could possibly import settings strings available in the future
     this.codeMirror.setOption(optionName as any, newValue);
   }
-  focusChanged(focused: boolean): void {
+  focusChanged(focused: boolean) {
     this.onTouched();
     this.isFocused = focused;
     this.focusChange.emit(focused);
   }
-  scrollChanged(cm: Editor): void {
+  scrollChanged(cm: Editor) {
     this.scroll.emit(cm.getScrollInfo());
   }
-  cursorActive(cm: Editor): void {
+  cursorActive(cm: Editor) {
     this.cursorActivity.emit(cm);
   }
-  dropFiles(cm: Editor, e: DragEvent): void {
+  dropFiles(cm: Editor, e: DragEvent) {
     this.drop.emit([cm, e]);
   }
   /** Implemented as part of ControlValueAccessor. */
-  writeValue(value: string): void {
+  writeValue(value: string) {
     if (value === null || value === undefined) {
       return;
     }
@@ -208,18 +188,12 @@ export class CodemirrorComponent
       return;
     }
     const cur = this.codeMirror.getValue();
-    if (
-      value !== cur &&
-      normalizeLineEndings(cur) !== normalizeLineEndings(value)
-    ) {
+    if (value !== cur && normalizeLineEndings(cur) !== normalizeLineEndings(value)) {
       this.value = value;
       if (this.preserveScrollPosition) {
         const prevScrollPosition = this.codeMirror.getScrollInfo();
         this.codeMirror.setValue(this.value);
-        this.codeMirror.scrollTo(
-          prevScrollPosition.left,
-          prevScrollPosition.top,
-        );
+        this.codeMirror.scrollTo(prevScrollPosition.left, prevScrollPosition.top);
       } else {
         this.codeMirror.setValue(this.value);
       }
@@ -227,15 +201,15 @@ export class CodemirrorComponent
   }
 
   /** Implemented as part of ControlValueAccessor. */
-  registerOnChange(fn: (value: string) => void): void {
+  registerOnChange(fn: (value: string) => void) {
     this.onChange = fn;
   }
   /** Implemented as part of ControlValueAccessor. */
-  registerOnTouched(fn: () => void): void {
+  registerOnTouched(fn: () => void) {
     this.onTouched = fn;
   }
   /** Implemented as part of ControlValueAccessor. */
-  setDisabledState(isDisabled: boolean): void {
+  setDisabledState(isDisabled: boolean) {
     this.disabled = isDisabled;
     this.setOptionIfChanged('readOnly', this.disabled);
   }

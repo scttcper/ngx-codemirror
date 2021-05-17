@@ -1,17 +1,18 @@
 # ngx-codemirror [![npm](https://badgen.net/npm/v/@ctrl/ngx-codemirror)](https://www.npmjs.com/package/@ctrl/ngx-codemirror) [![CircleCI](https://badgen.net/circleci/github/scttcper/ngx-codemirror)](https://circleci.com/gh/scttcper/ngx-codemirror) [![coverage](https://badgen.net/codecov/c/github/scttcper/ngx-codemirror)](https://codecov.io/gh/scttcper/ngx-codemirror)
 
-DEMO: https://ngx-codemirror.vercel.app  
+DEMO: https://ngx-codemirror.vercel.app
 
 ## Dependencies
 
 Latest version available for each version of Angular
 
-| @ctrl/ngx-codemirror | Angular |
-| -------------------- | ------- |
-| 1.3.10               | 6.x 7.x |
-| 2.2.1                | 8.x     |
-| 3.1.3                | 9.x     |
-| current              | >= 10.x |
+| @ctrl/ngx-codemirror | Angular   |
+| -------------------- | --------- |
+| 1.3.10               | 6.x 7.x   |
+| 2.2.1                | 8.x       |
+| 3.1.3                | 9.x       |
+| 4.1.1                | 10.x 11.x |
+| current              | >= 12.x   |
 
 An Angular component wrapper for [CodeMirror](https://codemirror.net/) that extends ngModel. Based on [JedWatson/react-codemirror](https://github.com/JedWatson/react-codemirror)
 
@@ -56,7 +57,7 @@ import 'codemirror/mode/markdown/markdown';
 
 Import the base css file and your [theme](https://codemirror.net/demo/theme.html)
 
-```scss
+```css
 @import '~codemirror/lib/codemirror';
 @import '~codemirror/theme/material';
 ```

@@ -1,47 +1,94 @@
-<div class="container mt-3">
-  <div class="row justify-content-center">
-    <div class="col-lg-6 col-12 mb-3">
-      <h1 class="text-center">Angular CodeMirror</h1>
-
-      <div class="mb-3 text-center">
-        <gh-button
-          [count]="true"
-          user="scttcper"
-          repo="ngx-codemirror"
-        ></gh-button>
-      </div>
-
-      <div class="ngx-codemirror mb-2">
-        <ngx-codemirror
-          [options]="options"
-          [ngModel]="defaults[mode]"
-          [disabled]="readOnly"
-          [autoFocus]="true"
-          (ngModelChange)="handleChange($event)"
-        ></ngx-codemirror>
-      </div>
-
-      <form class="form-inline">
-        <select class="form-control mr-1 mb-1" name="state" [(ngModel)]="mode" (ngModelChange)="changeMode()">
-          <option value="markdown">Markdown</option>
-          <option value="text/typescript">TypeScript</option>
-        </select>
-
-        <div class="btn-group-toggle mb-1 mr-1">
-          <label class="btn btn-light" [class.active]="readOnly">
-            <input type="checkbox" [(ngModel)]="readOnly" name="readOnly" autocomplete="off">
-            Toggle read-only mode (currently {{ readOnly ? 'on' : 'off' }})
-          </label>
-        </div>
-        <div class="btn-group-toggle mb-1 mr-1">
-          <button class="btn btn-light" (click)="clear()">Clear</button>
-        </div>
-
-      </form>
-
+<div class="max-w-7xl mx-auto pt-16 pb-6 px-4 sm:px-6 lg:px-8 lg:flex lg:justify-between">
+  <div class="max-w-xl">
+    <h2 class="text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
+      Angular CodeMirror
+    </h2>
+    <div class="mt-5">
+      <gh-button [count]="true" user="scttcper" repo="ngx-codemirror"></gh-button>
     </div>
   </div>
 </div>
 
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="ngx-codemirror mb-2">
+    <ngx-codemirror
+      [options]="options"
+      [ngModel]="defaults[mode]"
+      [disabled]="readOnly"
+      [autoFocus]="true"
+      (ngModelChange)="handleChange($event)"
+    ></ngx-codemirror>
+  </div>
 
-<app-footer></app-footer>
+  <div class="max-w-xs py-2">
+    <label for="language" class="block text-sm font-medium text-gray-700">Language</label>
+    <select
+      class="
+        mt-1
+        block
+        w-full
+        pl-3
+        pr-10
+        py-2
+        text-base
+        border-gray-300
+        focus:outline-none
+        focus:ring-indigo-500
+        focus:border-indigo-500
+        sm:text-sm
+        rounded-md
+      "
+      id="language"
+      name="language"
+      [(ngModel)]="mode"
+      (ngModelChange)="changeMode()"
+    >
+      <option value="markdown">Markdown</option>
+      <option value="text/typescript">TypeScript</option>
+    </select>
+  </div>
+
+  <div class="py-2">
+    <div class="flex items-start">
+      <div class="flex items-center h-5">
+        <input
+          [(ngModel)]="readOnly"
+          name="readOnly"
+          id="readOnly"
+          type="checkbox"
+          class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+        />
+      </div>
+      <div class="ml-3 text-sm">
+        <label for="readOnly" class="font-medium text-gray-700">Read-only mode</label>
+        <p class="text-gray-500">Disable input (currently {{ readOnly ? 'on' : 'off' }})</p>
+      </div>
+    </div>
+  </div>
+  <div class="py-2">
+    <button
+      type="button"
+      class="
+        inline-flex
+        items-center
+        px-2.5
+        py-1.5
+        border border-gray-300
+        shadow-sm
+        text-xs
+        font-medium
+        rounded
+        text-gray-700
+        bg-white
+        hover:bg-gray-50
+        focus:outline-none
+        focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+      "
+      (click)="clear()"
+    >
+      Clear Content
+    </button>
+  </div>
+
+  <app-footer></app-footer>
+</div>
