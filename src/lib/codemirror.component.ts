@@ -17,7 +17,7 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import {
   Editor,
-  EditorChangeLinkedList,
+  EditorChange,
   EditorFromTextArea,
   ScrollInfo,
 } from 'codemirror';
@@ -81,10 +81,10 @@ export class CodemirrorComponent
   /* called when the editor is focused or loses focus */
   @Output() focusChange = new EventEmitter<boolean>();
   /* called when the editor is scrolled */
-  // tslint:disable-next-line:no-output-native
+  // eslint-disable-next-line @angular-eslint/no-output-native
   @Output() scroll = new EventEmitter<ScrollInfo>();
   /* called when file(s) are dropped */
-  // tslint:disable-next-line:no-output-native
+  // eslint-disable-next-line @angular-eslint/no-output-native
   @Output() drop = new EventEmitter<[Editor, DragEvent]>();
   @ViewChild('ref', { static: true }) ref!: ElementRef;
   value = '';
@@ -132,12 +132,12 @@ export class CodemirrorComponent
       );
       this.codeMirror.on(
         'change',
-        (cm: Editor, change: EditorChangeLinkedList) =>
+        (cm, change) =>
           this._ngZone.run(() => this.codemirrorValueChanged(cm, change)),
       );
       this.codeMirror.on(
         'drop',
-        (cm: Editor, e: DragEvent) => {
+        (cm, e) => {
           this._ngZone.run(() => this.dropFiles(cm, e));
         }
       );
@@ -168,7 +168,7 @@ export class CodemirrorComponent
       this.codeMirror.toTextArea();
     }
   }
-  codemirrorValueChanged(cm: Editor, change: EditorChangeLinkedList): void {
+  codemirrorValueChanged(cm: Editor, change: EditorChange): void {
     const cmVal = cm.getValue();
     if (this.value !== cmVal) {
       this.value = cmVal;
