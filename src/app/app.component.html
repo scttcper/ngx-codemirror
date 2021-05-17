@@ -10,88 +10,84 @@
 </div>
 
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  <div class="col-lg-6 col-12 mb-3">
-    <div class="mb-3 text-center"></div>
+  <div class="ngx-codemirror mb-2">
+    <ngx-codemirror
+      [options]="options"
+      [ngModel]="defaults[mode]"
+      [disabled]="readOnly"
+      [autoFocus]="true"
+      (ngModelChange)="handleChange($event)"
+    ></ngx-codemirror>
+  </div>
 
-    <div class="ngx-codemirror mb-2">
-      <ngx-codemirror
-        [options]="options"
-        [ngModel]="defaults[mode]"
-        [disabled]="readOnly"
-        [autoFocus]="true"
-        (ngModelChange)="handleChange($event)"
-      ></ngx-codemirror>
-    </div>
+  <div class="max-w-xs py-2">
+    <label for="language" class="block text-sm font-medium text-gray-700">Language</label>
+    <select
+      class="
+        mt-1
+        block
+        w-full
+        pl-3
+        pr-10
+        py-2
+        text-base
+        border-gray-300
+        focus:outline-none
+        focus:ring-indigo-500
+        focus:border-indigo-500
+        sm:text-sm
+        rounded-md
+      "
+      id="language"
+      name="language"
+      [(ngModel)]="mode"
+      (ngModelChange)="changeMode()"
+    >
+      <option value="markdown">Markdown</option>
+      <option value="text/typescript">TypeScript</option>
+    </select>
+  </div>
 
-    <div class="max-w-xs py-2">
-      <label for="language" class="block text-sm font-medium text-gray-700">Language</label>
-      <select
-        class="
-          mt-1
-          block
-          w-full
-          pl-3
-          pr-10
-          py-2
-          text-base
-          border-gray-300
-          focus:outline-none
-          focus:ring-indigo-500
-          focus:border-indigo-500
-          sm:text-sm
-          rounded-md
-        "
-        id="language"
-        name="language"
-        [(ngModel)]="mode"
-        (ngModelChange)="changeMode()"
-      >
-        <option value="markdown">Markdown</option>
-        <option value="text/typescript">TypeScript</option>
-      </select>
-    </div>
-
-    <div class="py-2">
-      <div class="flex items-start">
-        <div class="flex items-center h-5">
-          <input
-            [(ngModel)]="readOnly"
-            name="readOnly"
-            id="readOnly"
-            type="checkbox"
-            class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-          />
-        </div>
-        <div class="ml-3 text-sm">
-          <label for="readOnly" class="font-medium text-gray-700">Read-only mode</label>
-          <p class="text-gray-500">Disable input (currently {{ readOnly ? 'on' : 'off' }})</p>
-        </div>
+  <div class="py-2">
+    <div class="flex items-start">
+      <div class="flex items-center h-5">
+        <input
+          [(ngModel)]="readOnly"
+          name="readOnly"
+          id="readOnly"
+          type="checkbox"
+          class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+        />
+      </div>
+      <div class="ml-3 text-sm">
+        <label for="readOnly" class="font-medium text-gray-700">Read-only mode</label>
+        <p class="text-gray-500">Disable input (currently {{ readOnly ? 'on' : 'off' }})</p>
       </div>
     </div>
-    <div class="py-2">
-      <button
-        type="button"
-        class="
-          inline-flex
-          items-center
-          px-2.5
-          py-1.5
-          border border-gray-300
-          shadow-sm
-          text-xs
-          font-medium
-          rounded
-          text-gray-700
-          bg-white
-          hover:bg-gray-50
-          focus:outline-none
-          focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
-        "
-        (click)="clear()"
-      >
-        Clear Content
-      </button>
-    </div>
+  </div>
+  <div class="py-2">
+    <button
+      type="button"
+      class="
+        inline-flex
+        items-center
+        px-2.5
+        py-1.5
+        border border-gray-300
+        shadow-sm
+        text-xs
+        font-medium
+        rounded
+        text-gray-700
+        bg-white
+        hover:bg-gray-50
+        focus:outline-none
+        focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+      "
+      (click)="clear()"
+    >
+      Clear Content
+    </button>
   </div>
 
   <app-footer></app-footer>
