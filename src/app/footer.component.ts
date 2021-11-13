@@ -3,14 +3,13 @@ import { Component, VERSION } from '@angular/core';
 @Component({
   selector: 'app-footer',
   template: `
-  <footer class="footer mb-4 mt-5">
-    Angular {{ version }}
-    <br>
-    Released under the
-    <a href="https://github.com/scttcper/ngx-codemirror/blob/master/LICENSE">MIT</a> license
-    -
-    <a href="https://github.com/scttcper/ngx-codemirror">View Source</a>
-  </footer>
+    <footer class="footer mb-4 mt-5">
+      Angular {{ version }}
+      <br />
+      Released under the
+      <a href="https://github.com/scttcper/ngx-codemirror/blob/master/LICENSE">MIT</a> license -
+      <a href="https://github.com/scttcper/ngx-codemirror">View Source</a>
+    </footer>
   `,
   styles: [
     `

@@ -3,8 +3,7 @@ import { Component } from '@angular/core';
 const defaults = {
   markdown:
     '# Heading\n\nSome **bold** and _italic_ text\nBy [Scott Cooper](https://github.com/scttcper)',
-  'text/typescript':
-    `const component = {
+  'text/typescript': `const component = {
   name: "@ctrl/ngx-codemirror",
   author: "Scott Cooper",
   repo: "https://github.com/scttcper/ngx-codemirror"
