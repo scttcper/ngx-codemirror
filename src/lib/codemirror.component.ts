@@ -103,13 +103,15 @@ export class CodemirrorComponent
     }
 
     // in order to allow for universal rendering, we import Codemirror runtime with `require` to prevent node errors
-    this._codeMirror = typeof CodeMirror !== 'undefined' ? CodeMirror : require('codemirror');
+    this._codeMirror = typeof CodeMirror !== 'undefined' ? CodeMirror : import('codemirror');
     return this._codeMirror;
   }
 
   ngAfterViewInit() {
-    this._ngZone.runOutsideAngular(() => {
-      this.codeMirror = this.codeMirrorGlobal.fromTextArea(
+    this._ngZone.runOutsideAngular(async () => {
+      const codeMirrorObj = await this.codeMirrorGlobal;
+      const codeMirror = codeMirrorObj?.default ? codeMirrorObj.default : codeMirrorObj;
+      this.codeMirror = codeMirror.fromTextArea(
         this.ref.nativeElement,
         this._options,
       ) as EditorFromTextArea;
