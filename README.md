@@ -25,7 +25,7 @@ tsquery playground: https://tsquery-playground.firebaseapp.com/
 `codemirror` is a peer dependency and must also be installed
 
 ```sh
-npm install @ctrl/ngx-codemirror codemirror
+npm install @ctrl/ngx-codemirror codemirror@5
 ```
 
 ## Use
