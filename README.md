@@ -6,13 +6,14 @@ DEMO: https://ngx-codemirror.vercel.app
 
 Latest version available for each version of Angular
 
-| @ctrl/ngx-codemirror | Angular   |
-| -------------------- | --------- |
-| 1.3.10               | 6.x 7.x   |
-| 2.2.1                | 8.x       |
-| 3.1.3                | 9.x       |
-| 4.1.1                | 10.x 11.x |
-| current              | >= 12.x   |
+| @ctrl/ngx-codemirror | Angular   | Codemirror |
+| -------------------- | --------- | ---------- |
+| 1.3.10               | 6.x 7.x   | 5          |
+| 2.2.1                | 8.x       | 5          |
+| 3.1.3                | 9.x       | 5          |
+| 4.1.1                | 10.x 11.x | 5          |
+| 5.1.1                | 12.x-14x  | 5          |
+| current              | >= 15.x   | 5          |
 
 An Angular component wrapper for [CodeMirror](https://codemirror.net/) that extends ngModel. Based on [JedWatson/react-codemirror](https://github.com/JedWatson/react-codemirror)
 
