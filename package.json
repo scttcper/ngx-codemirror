@@ -6,7 +6,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng-packagr -p src/lib/package.json",
+    "build": "ng-packagr -p src/lib/ng-package.json",
     "postbuild": "cpy README.md LICENSE dist",
     "publish": "cd dist && npm publish --access public",
     "test": "ng test --watch=false --browsers=ChromeCI",

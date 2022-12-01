@@ -1,0 +1,10 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "allowedNonPeerDependencies": [
+    "@types/codemirror"
+  ],
+  "lib": {
+    "entryFile": "public_api.ts"
+  },
+  "dest": "../../dist"
+}
