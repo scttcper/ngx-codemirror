@@ -83,7 +83,7 @@ export class CodemirrorComponent
   // eslint-disable-next-line @angular-eslint/no-output-native
   @Output() drop = new EventEmitter<[Editor, DragEvent]>();
   /* called when codeMirror instance is initiated on the component */
-  @Output() onLoad = new EventEmitter<CodemirrorComponent>();
+  @Output() codeMirrorLoaded = new EventEmitter<CodemirrorComponent>();
   @ViewChild('ref') ref!: ElementRef<HTMLTextAreaElement>;
   value = '';
   disabled = false;

@@ -89,7 +89,7 @@ All Inputs of [ngModel](https://angular.io/api/forms/NgModel#inputs) and
 
 All outputs of [ngModel](https://angular.io/api/forms/NgModel#outputs) and
 
-- `onLoad` - called when codeMirror instance is initiated
+- `codeMirrorLoaded` - called when codeMirror instance is initiated
 - `focusChange` - called when the editor is focused or loses focus
 - `scroll` - called when the editor is scrolled (not wrapped inside angular change detection must manually trigger change detection or run inside ngzone)
 - `cursorActivity` - called when the text cursor is moved
