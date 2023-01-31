@@ -128,7 +128,7 @@ export class CodemirrorComponent
         this._ngZone.run(() => this.dropFiles(cm, e));
       });
       this.codeMirror.setValue(this.value);
-      this.onLoad.emit(this);
+      this.codeMirrorLoaded.emit(this);
     });
   }
   ngDoCheck() {
