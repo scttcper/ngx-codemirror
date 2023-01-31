@@ -82,6 +82,8 @@ export class CodemirrorComponent
   /* called when file(s) are dropped */
   // eslint-disable-next-line @angular-eslint/no-output-native
   @Output() drop = new EventEmitter<[Editor, DragEvent]>();
+  /* called when codeMirror instance is initiated on the component */
+  @Output() codeMirrorLoaded = new EventEmitter<CodemirrorComponent>();
   @ViewChild('ref') ref!: ElementRef<HTMLTextAreaElement>;
   value = '';
   disabled = false;
@@ -126,6 +128,7 @@ export class CodemirrorComponent
         this._ngZone.run(() => this.dropFiles(cm, e));
       });
       this.codeMirror.setValue(this.value);
+      this.codeMirrorLoaded.emit(this);
     });
   }
   ngDoCheck() {
