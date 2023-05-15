@@ -13,7 +13,8 @@ Latest version available for each version of Angular
 | 3.1.3                | 9.x       | 5          |
 | 4.1.1                | 10.x 11.x | 5          |
 | 5.1.1                | 12.x-14x  | 5          |
-| current              | >= 15.x   | 5          |
+| 6.1.0                | 15.x      | 5          |
+| current              | >= 16.x   | 5          |
 
 An Angular component wrapper for [CodeMirror](https://codemirror.net/) that extends ngModel. Based on [JedWatson/react-codemirror](https://github.com/JedWatson/react-codemirror)
 
