@@ -65,6 +65,8 @@
     "zone.js": "0.13.0"
   },
   "release": {
-    "branch": "master"
+    "branches": [
+      "master"
+    ]
   }
 }
