@@ -1,3 +1,5 @@
+# DEPRECATED Use https://github.com/acrodata/code-editor
+
 # ngx-codemirror [![npm](https://badgen.net/npm/v/@ctrl/ngx-codemirror)](https://www.npmjs.com/package/@ctrl/ngx-codemirror) [![coverage](https://badgen.net/codecov/c/github/scttcper/ngx-codemirror)](https://codecov.io/gh/scttcper/ngx-codemirror)
 
 DEMO: https://ngx-codemirror.vercel.app
